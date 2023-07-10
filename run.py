@@ -22,9 +22,13 @@ def list_menu(menu_options):
     print("Options Menu:")
     for option in menu_options:
         print(option)
-    select_option = input(
-        "What do you want to do? Add the number of your option without any other characters:")
-    return select_option
+    while True:
+        selected_option = input(
+            "What do you want to do? Add the number of your option without any other characters:")
+        if selected_option.isdigit() and 1 <= int(selected_option) <= 5:
+            return selected_option
+        else:
+            print("You haven`t selected a valid option. Please select a value from 1 to 5 based on the options menu list.")
 
 
 class Oils:
@@ -86,8 +90,7 @@ elif selected_option == "4":
 elif selected_option == "5":
     pass
 else:
-    print("You haven`t selected any of the options available. Please try again one of the options listed above.")
-    return selected_option
+    print("The option you have selected:", selected_option)
 
 
 data = [my_oil.name, my_oil.ailment, my_oil.price,
