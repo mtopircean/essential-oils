@@ -60,6 +60,7 @@ def add_oil():
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print("You added {name} to the database")
     print(my_oil)
+    return my_oil
 
 
 def update_oils_worksheet(data, worksheet):
@@ -75,6 +76,7 @@ def update_oils_worksheet(data, worksheet):
 
     print(f"{worksheet} updated.")
 
+
 def list_oils():
     """
     Pull database of oils from worksheet.
@@ -87,22 +89,27 @@ def list_oils():
         print("Here is a list of all your stored oils:")
         print(oil)
         print()
+        print("Do you want to select another option from the main menu?")
+        print()
 
 
 def find_oils():
     """
-    Pull database of oils from worksheet.
+    Find multiple oils in the database.
     """
+
 
 def store_find():
     """
     Store your search under a patient record.
     """
 
+
 def list_patient():
     """
     List your patient records.
     """
+
 
 def find_patient():
     """
@@ -114,7 +121,11 @@ selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
 
 if selected_option == "1":
-    add_oil()
+    my_oil = add_oil()
+    if my_oil is not None:
+        data = [my_oil.name, my_oil.ailment, my_oil.price,
+                my_oil.application, my_oil.score]
+        update_oils_worksheet(data, "master")
 elif selected_option == "2":
     list_oils()
 elif selected_option == "3":
@@ -125,8 +136,3 @@ elif selected_option == "5":
     find_patient()
 else:
     print("The option you have selected:", selected_option)
-
-
-data = [my_oil.name, my_oil.ailment, my_oil.price,
-        my_oil.application, my_oil.score]
-update_oils_worksheet(data, "master")
