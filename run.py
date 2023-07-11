@@ -131,6 +131,15 @@ def find_store_oils():
         for oil in matching_oils:
             print(oil)
 
+        worksheet_id_two = "search_history"
+        worksheet_two = SHEET.worksheet(worksheet_id_two)
+        next_search = len(worksheet.get_all_values()) - 2
+        for oil in matching_oils:
+            oil_data = [oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']]
+            worksheet_two.insert_row(oil_data, next_search)
+            next_search += 1
+        print("Your search was added to your search history")
+
     else:
         print("we couldn`t find any result matching your search criteria.")
 
