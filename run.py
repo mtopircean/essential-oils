@@ -17,6 +17,7 @@ SHEET = GSPREAD_CLIENT.open('EssentialOils')
 program_menu = ("1. Add a product to the database", "2. List oils database",
                 "3. Search a product in the database", "4. Print patient database", "5. Search patient file")
 
+search_menu = ("1. Search by Name:", "2. Search by ailment")
 
 def list_menu(menu_options):
     print("Options Menu:")
@@ -58,7 +59,7 @@ def add_oil():
     score = price / 100 + (0 if application == "yes" else 1)
 
     my_oil.eo_catalogue(name, ailment, price, application, score)
-    print("You added {name} to the database")
+    print(f"You added {my_oil.name} to the database")
     print(my_oil)
     return my_oil
 
@@ -93,16 +94,41 @@ def list_oils():
         print()
 
 
-def find_oils():
+def find_store_oils():
     """
     Find multiple oils in the database.
     """
+    def search_menu(search_options):
+        print("Search Menu:")
+        for option in search_options:
+            print(option)
+        while True:
+            selected_option = input(
+                "What do you want to do? Add the number of your option without any other characters:")
+            if selected_option.isdigit() and 1 <= int(selected_option) <= 2:
+                return selected_option
+            else:
+                print("You haven`t selected a valid option. Please select a value from 1 to 2 based on the options menu list.")
+
+    worksheet_id = "master"
+    worksheet = SHEET.worksheet(worksheet_id)
+    all_oils = worksheet.get_all_records()
+    
+    search_oils = input("Input the name of the oil or the ailment you need to address: ")
+
+    matching_oils = []
+    for oil in all_oils:
+        if 'Oil Name' in oil and search_oils.lower() in oil['Oil Name'].lower():
+            matching_oils.append(oil)
 
 
-def store_find():
-    """
-    Store your search under a patient record.
-    """
+    if matching_oils:
+        print("Please find bellow your search result:")
+        for oil in matching_oils:
+            print(oil)
+    
+    else:
+        print("we couldn`t find any result matching your search criteria.")
 
 
 def list_patient():
@@ -129,7 +155,7 @@ if selected_option == "1":
 elif selected_option == "2":
     list_oils()
 elif selected_option == "3":
-    find_oils()
+    find_store_oils()
 elif selected_option == "4":
     list_patient()
 elif selected_option == "5":
