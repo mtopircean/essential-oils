@@ -75,6 +75,40 @@ def update_oils_worksheet(data, worksheet):
 
     print(f"{worksheet} updated.")
 
+def list_oils():
+    """
+    Pull database of oils from worksheet.
+    """
+    worksheet_id = "master"
+    worksheet = SHEET.worksheet(worksheet_id)
+    all_oils = worksheet.get_all_records()
+
+    for oil in all_oils:
+        print("Here is a list of all your stored oils:")
+        print(oil)
+        print()
+
+
+def find_oils():
+    """
+    Pull database of oils from worksheet.
+    """
+
+def store_find():
+    """
+    Store your search under a patient record.
+    """
+
+def list_patient():
+    """
+    List your patient records.
+    """
+
+def find_patient():
+    """
+    Find a patient.
+    """
+
 
 selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
@@ -82,13 +116,13 @@ print("The option you have selected:", selected_option)
 if selected_option == "1":
     add_oil()
 elif selected_option == "2":
-    pass
+    list_oils()
 elif selected_option == "3":
-    pass
+    find_oils()
 elif selected_option == "4":
-    pass
+    list_patient()
 elif selected_option == "5":
-    pass
+    find_patient()
 else:
     print("The option you have selected:", selected_option)
 
