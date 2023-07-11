@@ -19,6 +19,7 @@ program_menu = ("1. Add a product to the database", "2. List oils database",
 
 search_menu = ("1. Search by Name:", "2. Search by ailment")
 
+
 def list_menu(menu_options):
     print("Options Menu:")
     for option in menu_options:
@@ -108,25 +109,28 @@ def find_store_oils():
             if selected_option.isdigit() and 1 <= int(selected_option) <= 2:
                 return selected_option
             else:
-                print("You haven`t selected a valid option. Please select a value from 1 to 2 based on the options menu list.")
+                print(
+                    "You haven`t selected a valid option. Please select a value from 1 to 2 based on the options menu list.")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
-    
-    search_oils = input("Input the name of the oil or the ailment you need to address: ")
+
+    search_criteria = input(
+        "Input the name of the oil or the ailment you need to address: ")
 
     matching_oils = []
     for oil in all_oils:
-        if 'Oil Name' in oil and search_oils.lower() in oil['Oil Name'].lower():
+        if 'Oil Name' in oil and search_criteria.lower() in oil['Oil Name'].lower():
             matching_oils.append(oil)
-
+        elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
+            matching_oils.append(oil)
 
     if matching_oils:
         print("Please find bellow your search result:")
         for oil in matching_oils:
             print(oil)
-    
+
     else:
         print("we couldn`t find any result matching your search criteria.")
 
