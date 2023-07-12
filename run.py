@@ -15,7 +15,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('EssentialOils')
 
 program_menu = ("1. Add a product to the database", "2. List oils database",
-                "3. Search a product in the database", "4. Print patient database", "5. Search patient file")
+                "3. Search a product in the database", "4. Search patient in the database")
 
 search_menu = ("1. Search by Name:", "2. Search by ailment")
 
@@ -131,35 +131,37 @@ def find_store_oils():
         for oil in matching_oils:
             print(oil)
 
-        sheet_name = input("Add your search as a new patient. List patient`s name:")
-        worksheet_two = SHEET.add_worksheet(title=sheet_name, rows="200", cols="200")
-        worksheet_id_two = worksheet_two.id
+        sheet_name = input("Add your search to a patient. List patient`s name:")
+        patients_sheet = SHEET.worksheet("patients_list")
+        patients_data = patients_sheet.get_all_records()
+        patients_names = [patient['Patient Name'] for patient in patients_data]
 
-        header = ['Oil Name', 'Ailment', 'Price', 'Application', 'Score']
-        worksheet_two.insert_row(header, 1)
+        if sheet_name in patients_names:
+            print("Patient already has a record. Your new search will be appended to the existing one.")
+            patient_index = patients_names.index(sheet_name)
+            next_search = len(patients_data[patient_index]) +1
+            patients_sheet.insert_row([""], next_search)
 
-        next_search = len(worksheet.get_all_values()) -2
+        else:
+            print("Adding a new patient to your list.")
+            patients_sheet.append_row([sheet_name])
+            patient_index = len(patients_names) - 1
+            header = ['Patient Name', 'Oil Name', 'Ailment', 'Price', 'Application', 'Score']
+            patients_sheet.append_row(header)
+
         for oil in matching_oils:
-            oil_data = [oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']]
-            worksheet_two.insert_row(oil_data, next_search)
-            next_search += 1
+            oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']]
+            patients_sheet.append_row(oil_data)
         print("Your search was added to your search history")
 
     else:
         print("we couldn`t find any result matching your search criteria.")
 
 
-def list_patient():
+def search_patient():
     """
-    List your patient records.
+    Search a patient.
     """
-
-
-def find_patient():
-    """
-    Find a patient.
-    """
-
 
 selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
@@ -175,8 +177,6 @@ elif selected_option == "2":
 elif selected_option == "3":
     find_store_oils()
 elif selected_option == "4":
-    list_patient()
-elif selected_option == "5":
-    find_patient()
+    search_patient()
 else:
     print("The option you have selected:", selected_option)
