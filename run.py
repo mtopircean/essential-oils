@@ -140,14 +140,11 @@ def find_store_oils():
             print("Patient already has a record. Your new search will be appended to the existing one.")
             patient_index = patients_names.index(sheet_name)
             next_search = len(patients_data[patient_index]) +1
-            patients_sheet.insert_row([""], next_search)
+            patients_sheet.insert_row([], next_search)
 
         else:
             print("Adding a new patient to your list.")
             patients_sheet.append_row([sheet_name])
-            patient_index = len(patients_names) - 1
-            header = ['Patient Name', 'Oil Name', 'Ailment', 'Price', 'Application', 'Score']
-            patients_sheet.append_row(header)
 
         for oil in matching_oils:
             oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']]
