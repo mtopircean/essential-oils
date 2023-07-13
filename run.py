@@ -15,7 +15,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('EssentialOils')
 
 program_menu = ("1. Add a product to the database", "2. List oils database",
-                "3. Search a product in the database", "4. Search patient in the database")
+                "3. Search a product in the database", "4. List patients database", "5. Search patient in the database")
 
 search_menu = ("1. Search by Name:", "2. Search by ailment")
 
@@ -116,8 +116,7 @@ def find_store_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
-    search_criteria = input(
-        "Input the name of the oil or the ailment you need to address: ")
+    search_criteria = input("Input the name of the oil or the ailment you need to address: ")
 
     matching_oils = []
     for oil in all_oils:
@@ -159,6 +158,30 @@ def search_patient():
     """
     Search a patient.
     """
+    worksheet_id = "patients_list"
+    worksheet = SHEET.worksheet(worksheet_id)
+    all_patients = worksheet.get_all_records()
+
+    search_criteria = input("Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
+    matching_patient = []
+    found_patient = False
+    for patient in all_patients:
+        if 'Patient Name' in patient and search_criteria.lower() in patient['Patient Name'].lower():
+            matching_patient.append(patient)
+            found_patient = True
+        else:
+            pass
+    if found_patient:
+        for patient in matching_patient:
+            print(patient, end="\n")
+    else:
+            print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
+
+def list_patients():
+    """
+    Search a patient.
+    """
+
 
 selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
@@ -174,6 +197,8 @@ elif selected_option == "2":
 elif selected_option == "3":
     find_store_oils()
 elif selected_option == "4":
+    list_patients()
+elif selected_option == "5":
     search_patient()
 else:
     print("The option you have selected:", selected_option)
