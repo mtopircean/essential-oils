@@ -153,6 +153,18 @@ def find_store_oils():
     else:
         print("we couldn`t find any result matching your search criteria.")
 
+def list_patients():
+    """
+    Search a patient.
+    """
+    worksheet_id = "patients_list"
+    worksheet = SHEET.worksheet(worksheet_id)
+    all_patients = worksheet.get_all_records()
+
+    for patient in all_patients:
+        print("Here is a list of all your current patients:")
+        print(patient)
+        print()
 
 def search_patient():
     """
@@ -176,11 +188,6 @@ def search_patient():
             print(patient, end="\n")
     else:
             print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
-
-def list_patients():
-    """
-    Search a patient.
-    """
 
 
 selected_option = list_menu(program_menu)
