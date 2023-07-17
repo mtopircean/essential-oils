@@ -49,10 +49,9 @@ class Oils:
 
 def add_oil():
     my_oil = Oils()
-
     name = input("Input the name of the oil: ")
     ailment = input(
-        "Input the ailments the oil addresses by using a , to separate them without a space: ")
+            "Input the ailments the oil addresses by using a , to separate them without a space: ")
     price = float(input("Input the price value: "))
     application = input("Does it need a difuser(Yes/No): ")
     score = price / 100 + (0 if application == "yes" else 1)
@@ -60,12 +59,16 @@ def add_oil():
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print(f"You added {my_oil.name} to the database")
     print(my_oil)
-
-    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
-    if return_menu == "Yes":
-        list_menu(program_menu)
-
-    return my_oil
+    
+    while True:
+        return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+        if return_menu.lower() == "no":
+            print("Program is now exiting!")
+            return my_oil
+        else:
+            option_selection = list_menu(program_menu)
+            break
+        return my_oil
 
 
 def update_oils_worksheet(data, worksheet):
@@ -94,11 +97,13 @@ def list_oils():
     for oil in all_oils:
         print(oil)
         print()
-    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    return_menu = input(
+        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
         list_menu(program_menu)
 
         return list_oils
+
 
 def find_store_oils():
     """
@@ -109,7 +114,8 @@ def find_store_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
-    search_criteria = input("Input the name of the oil or the ailment you need to address: ")
+    search_criteria = input(
+        "Input the name of the oil or the ailment you need to address: ")
 
     matching_oils = []
     for oil in all_oils:
@@ -123,15 +129,17 @@ def find_store_oils():
         for oil in matching_oils:
             print(oil)
 
-        sheet_name = input("Add your search to a patient. List patient`s name:")
+        sheet_name = input(
+            "Add your search to a patient. List patient`s name:")
         patients_sheet = SHEET.worksheet("patients_list")
         patients_data = patients_sheet.get_all_records()
         patients_names = [patient['Patient Name'] for patient in patients_data]
 
         if sheet_name in patients_names:
-            print("Patient already has a record. Your new search will be appended to the existing one.")
+            print(
+                "Patient already has a record. Your new search will be appended to the existing one.")
             patient_index = patients_names.index(sheet_name)
-            next_search = len(patients_data[patient_index]) +1
+            next_search = len(patients_data[patient_index]) + 1
             patients_sheet.insert_row([], next_search)
 
         else:
@@ -139,18 +147,21 @@ def find_store_oils():
             patients_sheet.append_row([sheet_name])
 
         for oil in matching_oils:
-            oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']]
+            oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
+                        oil['Price'], oil['Application'], oil['Score']]
             patients_sheet.append_row(oil_data)
         print("Your search was added to your search history")
 
     else:
         print("we couldn`t find any result matching your search criteria.")
 
-    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    return_menu = input(
+        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
         list_menu(program_menu)
 
         return find_store_oils
+
 
 def list_patients():
     """
@@ -164,12 +175,14 @@ def list_patients():
         print("Here is a list of all your current patients:")
         print(patient)
         print()
-    
-    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+
+    return_menu = input(
+        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
         list_menu(program_menu)
 
         return list_patients
+
 
 def search_patient():
     """
@@ -179,7 +192,8 @@ def search_patient():
     worksheet = SHEET.worksheet(worksheet_id)
     all_patients = worksheet.get_all_records()
 
-    search_criteria = input("Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
+    search_criteria = input(
+        "Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
     matching_patient = []
     found_patient = False
     for patient in all_patients:
@@ -192,13 +206,15 @@ def search_patient():
         for patient in matching_patient:
             print(patient, end="\n")
     else:
-            print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
+        print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
 
-    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    return_menu = input(
+        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
         list_menu(program_menu)
 
         return list_patients
+
 
 selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
