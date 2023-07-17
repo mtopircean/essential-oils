@@ -17,8 +17,6 @@ SHEET = GSPREAD_CLIENT.open('EssentialOils')
 program_menu = ("1. Add a product to the database", "2. List oils database",
                 "3. Search a product in the database", "4. List patients database", "5. Search patient in the database")
 
-search_menu = ("1. Search by Name:", "2. Search by ailment")
-
 
 def list_menu(menu_options):
     print("Options Menu:")
@@ -62,6 +60,11 @@ def add_oil():
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print(f"You added {my_oil.name} to the database")
     print(my_oil)
+
+    return_menu = input("Do you want to return to the main menu? Type Yes or No.")
+    if return_menu == "Yes":
+        list_menu(program_menu)
+
     return my_oil
 
 
