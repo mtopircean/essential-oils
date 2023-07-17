@@ -61,7 +61,7 @@ def add_oil():
     print(f"You added {my_oil.name} to the database")
     print(my_oil)
 
-    return_menu = input("Do you want to return to the main menu? Type Yes or No.")
+    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
         list_menu(program_menu)
 
@@ -90,13 +90,15 @@ def list_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
+    print("Here is a list of all your stored oils:")
     for oil in all_oils:
-        print("Here is a list of all your stored oils:")
         print(oil)
         print()
-        print("Do you want to select another option from the main menu?")
-        print()
+    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    if return_menu == "Yes":
+        list_menu(program_menu)
 
+        return list_oils
 
 def find_store_oils():
     """
