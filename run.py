@@ -104,18 +104,6 @@ def find_store_oils():
     """
     Find multiple oils in the database.
     """
-    def search_menu(search_options):
-        print("Search Menu:")
-        for option in search_options:
-            print(option)
-        while True:
-            selected_option = input(
-                "What do you want to do? Add the number of your option without any other characters:")
-            if selected_option.isdigit() and 1 <= int(selected_option) <= 2:
-                return selected_option
-            else:
-                print(
-                    "You haven`t selected a valid option. Please select a value from 1 to 2 based on the options menu list.")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -157,6 +145,12 @@ def find_store_oils():
 
     else:
         print("we couldn`t find any result matching your search criteria.")
+
+    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    if return_menu == "Yes":
+        list_menu(program_menu)
+
+        return find_store_oils
 
 def list_patients():
     """
