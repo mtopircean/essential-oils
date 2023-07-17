@@ -164,6 +164,12 @@ def list_patients():
         print("Here is a list of all your current patients:")
         print(patient)
         print()
+    
+    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    if return_menu == "Yes":
+        list_menu(program_menu)
+
+        return list_patients
 
 def search_patient():
     """
@@ -188,6 +194,11 @@ def search_patient():
     else:
             print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
 
+    return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+    if return_menu == "Yes":
+        list_menu(program_menu)
+
+        return list_patients
 
 selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
