@@ -51,22 +51,30 @@ def add_oil():
     my_oil = Oils()
     name = input("Input the name of the oil: ")
     ailment = input(
-            "Input the ailments the oil addresses by using a , to separate them without a space: ")
+        "Input the ailments the oil addresses by using a , to separate them without a space: ")
     while True:
         try:
             price = float(input("Input the price value: "))
             break
         except ValueError:
             print("You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
-    application = input("Does it need a difuser(Yes/No): ")
+
+    while True:
+        application = input("Does it need a difuser(Yes/No): ")
+        if application.lower() == "yes" or application.lower() == "no":
+            break
+        else:
+            print("You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+
     score = price / 100 + (0 if application == "yes" else 1)
 
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print(f"You added {my_oil.name} to the database")
     print(my_oil)
-    
+
     while True:
-        return_menu = input("Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
+        return_menu = input(
+            "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
         if return_menu.lower() == "no":
             print("Program is now exiting!")
             return my_oil
