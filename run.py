@@ -107,10 +107,14 @@ def list_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
-    print("Here is a list of all your stored oils:")
+
+    oils_table = []
     for oil in all_oils:
-        print(oil)
-        print()
+        oils_table.append([oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']])
+
+    print("Here is a list of all your stored oils:")
+    print(tabulate(oils_table, headers=["Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+
     return_menu = input(
         "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
     if return_menu == "Yes":
