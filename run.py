@@ -107,13 +107,14 @@ def list_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
-
     oils_table = []
     for oil in all_oils:
-        oils_table.append([oil['Oil Name'], oil['Ailment'], oil['Price'], oil['Application'], oil['Score']])
+        oils_table.append([oil['Oil Name'], oil['Ailment'],
+                          oil['Price'], oil['Application'], oil['Score']])
 
     print("Here is a list of all your stored oils:")
-    print(tabulate(oils_table, headers=["Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+    print(tabulate(oils_table, headers=[
+          "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
     return_menu = input(
         "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
@@ -144,8 +145,14 @@ def find_store_oils():
 
     if matching_oils:
         print("Please find bellow your search result:")
+        search_table = []
         for oil in matching_oils:
-            print(oil)
+            search_table.append([oil['Oil Name'], oil['Ailment'],
+                          oil['Price'], oil['Application'], oil['Score']])
+
+        print("Here is your search result:")
+        print(tabulate(search_table, headers=[
+          "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
         sheet_name = input(
             "Add your search to a patient. List patient`s name:")
@@ -189,10 +196,12 @@ def list_patients():
     worksheet = SHEET.worksheet(worksheet_id)
     all_patients = worksheet.get_all_records()
 
+    patients_table = []
     for patient in all_patients:
-        print("Here is a list of all your current patients:")
-        print(patient)
-        print()
+        patients_table.append([patient['Patient Name'], patient['Oil Name'], patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
+
+    print("Here is a list of all your stored patients:")
+    print(tabulate(patients_table, headers=["Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
     return_menu = input(
         "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
