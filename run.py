@@ -133,59 +133,68 @@ def find_store_oils():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
 
-    search_criteria = input(
-        "Input the name of the oil or the ailment you need to address: ")
+    while True:
+        search_criteria = input(
+            "Input the name of the oil or the ailment you need to address: ")
 
-    matching_oils = []
-    for oil in all_oils:
-        if 'Oil Name' in oil and search_criteria.lower() in oil['Oil Name'].lower():
-            matching_oils.append(oil)
-        elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
-            matching_oils.append(oil)
+        matching_oils = []
+        for oil in all_oils:
+            if 'Oil Name' in oil and search_criteria.lower() in oil['Oil Name'].lower():
+                matching_oils.append(oil)
+            elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
+                matching_oils.append(oil)
 
-    if matching_oils:
-        print("Please find bellow your search result:")
-        search_table = []
-        for oil in matching_oils:
-            search_table.append([oil['Oil Name'], oil['Ailment'],
-                          oil['Price'], oil['Application'], oil['Score']])
+        if matching_oils:
+            print("Please find bellow your search result:")
+            search_table = []
+            for oil in matching_oils:
+                search_table.append([oil['Oil Name'], oil['Ailment'],
+                                     oil['Price'], oil['Application'], oil['Score']])
 
-        print("Here is your search result:")
-        print(tabulate(search_table, headers=[
-          "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+            print("Here is your search result:")
+            print(tabulate(search_table, headers=[
+                "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+            
+            add_patient = None
+            while add_patient not in ["yes", "no"]:
+                add_patient = input("Do you want to save your search connected to a patient name? Type Yes/No: ").lower()
 
-        sheet_name = input(
-            "Add your search to a patient. List patient`s name:")
-        patients_sheet = SHEET.worksheet("patients_list")
-        patients_data = patients_sheet.get_all_records()
-        patients_names = [patient['Patient Name'] for patient in patients_data]
+                if add_patient not in ["yes", "no"]:
+                    print("You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+            
+            if add_patient.lower() == "yes":
 
-        if sheet_name in patients_names:
-            print(
-                "Patient already has a record. Your new search will be appended to the existing one.")
-            patient_index = patients_names.index(sheet_name)
-            next_search = len(patients_data[patient_index]) + 1
-            patients_sheet.insert_row([], next_search)
+                sheet_name = input(
+                    "List patient`s name:")
+                patients_sheet = SHEET.worksheet("patients_list")
+                patients_data = patients_sheet.get_all_records()
+                patients_names = [patient['Patient Name']
+                                  for patient in patients_data]
+
+                if sheet_name in patients_names:
+                    print(
+                        "Patient already has a record. Your new search will be appended to the existing one.")
+                    patient_index = patients_names.index(sheet_name)
+                    next_search = len(patients_data[patient_index]) + 1
+                    patients_sheet.insert_row([], next_search)
+
+                else:
+                    print("Adding a new patient to your list.")
+                    patients_sheet.append_row([sheet_name])
+
+                for oil in matching_oils:
+                    oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
+                                oil['Price'], oil['Application'], oil['Score']]
+                    patients_sheet.append_row(oil_data)
+                print("Your search was added to your search history")
 
         else:
-            print("Adding a new patient to your list.")
-            patients_sheet.append_row([sheet_name])
+            print(
+                "We couldn`t find any result matching your search criteria. Please search again")
 
-        for oil in matching_oils:
-            oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
-                        oil['Price'], oil['Application'], oil['Score']]
-            patients_sheet.append_row(oil_data)
-        print("Your search was added to your search history")
-
-    else:
-        print("we couldn`t find any result matching your search criteria.")
-
-    return_menu = input(
-        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
-    if return_menu == "Yes":
-        list_menu(program_menu)
-
-        return find_store_oils
+        new_search = input("Do you want to run a new search? Type Yes/No: ")
+        if new_search.lower() != "yes":
+            break
 
 
 def list_patients():
@@ -198,10 +207,12 @@ def list_patients():
 
     patients_table = []
     for patient in all_patients:
-        patients_table.append([patient['Patient Name'], patient['Oil Name'], patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
+        patients_table.append([patient['Patient Name'], patient['Oil Name'],
+                              patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
 
     print("Here is a list of all your stored patients:")
-    print(tabulate(patients_table, headers=["Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+    print(tabulate(patients_table, headers=[
+          "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
     return_menu = input(
         "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
