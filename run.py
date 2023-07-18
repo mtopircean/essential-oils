@@ -191,8 +191,11 @@ def find_store_oils():
         else:
             print(
                 "We couldn`t find any result matching your search criteria. Please search again")
-
+        
         new_search = input("Do you want to run a new search? Type Yes/No: ")
+        while new_search.lower() not in ["yes", "no"]:
+            print("You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+            new_search = input("Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
             break
 
@@ -213,13 +216,6 @@ def list_patients():
     print("Here is a list of all your stored patients:")
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
-
-    return_menu = input(
-        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
-    if return_menu == "Yes":
-        list_menu(program_menu)
-
-        return list_patients
 
 
 def search_patient():
@@ -245,13 +241,6 @@ def search_patient():
             print(patient, end="\n")
     else:
         print("Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
-
-    return_menu = input(
-        "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
-    if return_menu == "Yes":
-        list_menu(program_menu)
-
-        return list_patients
 
 
 selected_option = list_menu(program_menu)
