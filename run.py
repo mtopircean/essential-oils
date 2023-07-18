@@ -52,7 +52,12 @@ def add_oil():
     name = input("Input the name of the oil: ")
     ailment = input(
             "Input the ailments the oil addresses by using a , to separate them without a space: ")
-    price = float(input("Input the price value: "))
+    while True:
+        try:
+            price = float(input("Input the price value: "))
+            break
+        except ValueError:
+            print("You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
     application = input("Does it need a difuser(Yes/No): ")
     score = price / 100 + (0 if application == "yes" else 1)
 
