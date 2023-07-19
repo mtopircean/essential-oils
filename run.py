@@ -73,6 +73,10 @@ def add_oil():
     print(f"You added {my_oil.name} to the database")
     print(my_oil)
 
+    data = [my_oil.name, my_oil.ailment, my_oil.price,
+                my_oil.application, my_oil.score]
+    update_oils_worksheet(data, "master")
+
     while True:
         return_menu = input(
             "Do you want to return to the main menu? Type Yes or No. If you type No, you will completley exit the program.")
@@ -247,11 +251,7 @@ selected_option = list_menu(program_menu)
 print("The option you have selected:", selected_option)
 
 if selected_option == "1":
-    my_oil = add_oil()
-    if my_oil is not None:
-        data = [my_oil.name, my_oil.ailment, my_oil.price,
-                my_oil.application, my_oil.score]
-        update_oils_worksheet(data, "master")
+    add_oil()
 elif selected_option == "2":
     list_oils()
 elif selected_option == "3":
