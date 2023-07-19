@@ -20,7 +20,7 @@ program_menu = ("1. Add a product to the database", "2. List oils database",
 
 
 def list_menu(menu_options):
-    print("Options Menu:")
+    print(colorama.Fore.BLUE + "Options Menu:")
     for option in menu_options:
         print(option)
     while True:
@@ -29,8 +29,8 @@ def list_menu(menu_options):
         if selected_option.isdigit() and 1 <= int(selected_option) <= 5:
             return selected_option
         else:
-            print("You haven`t selected a valid option. Please select a value from 1 to 5 based on the options menu list.")
-
+            print(colorama.Fore.RED +  colorama.Style.BRIGHT + "You haven`t selected a valid option.")
+            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE + "Please select a value from 1 to 5 based on the options menu list.")
 
 class Oils:
     """
