@@ -18,8 +18,6 @@ SHEET = GSPREAD_CLIENT.open('EssentialOils')
 program_menu = ("1. Add a product to the database", "2. List oils database",
                 "3. Search a product in the database", "4. List patients database", "5. Search patient in the database")
 
-return_main = False
-
 
 def list_menu(menu_options):
     print(colorama.Fore.BLUE + "Options Menu:")
@@ -61,7 +59,7 @@ def add_oil():
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
-                            colorama.Fore.BLUE + "Input the price value: "))
+                                colorama.Fore.BLUE + "Input the price value: "))
             break
         except ValueError:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -88,14 +86,20 @@ def add_oil():
 
     while True:
         re_run = input(
-        "Do you want to add another product to the database? Type Yes or No: ")
+            "Do you want to add another product to the database? Type Yes or No: ")
         if re_run.lower() == "no":
-            exit()
+            main_menu = input(
+                "Do you want to exit to main menu? Type Yes if you want to return to main:")
+            if main_menu.lower() == "yes":
+                main()
+            else:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                      "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
         elif re_run.lower() == "yes":
             add_oil()
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+                  "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def update_oils_worksheet(data, worksheet):
@@ -129,6 +133,14 @@ def list_oils():
     print("Here is a list of all your stored oils:")
     print(tabulate(oils_table, headers=[
           "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+
+    main_menu = input(
+        "Do you want to exit to main menu? Type Yes if you want to return to main:")
+    if main_menu.lower() == "yes":
+        main()
+    else:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def find_store_oils():
@@ -229,6 +241,14 @@ def list_patients():
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
+    main_menu = input(
+        "Do you want to exit to main menu? Type Yes if you want to return to main:")
+    if main_menu.lower() == "yes":
+        main()
+    else:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+
 
 def search_patient():
     """
@@ -254,21 +274,34 @@ def search_patient():
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
+    main_menu = input(
+        "Do you want to exit to main menu? Type Yes if you want to return to main:")
+    if main_menu.lower() == "yes":
+        main()
+    else:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+
+def main():
+    while True:
+
+        selected_option = list_menu(program_menu)
+        print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+              "The option you have selected:", selected_option)
+
+        if selected_option == "1":
+            add_oil()
+        elif selected_option == "2":
+            list_oils()
+        elif selected_option == "3":
+            find_store_oils()
+        elif selected_option == "4":
+            list_patients()
+        elif selected_option == "5":
+            search_patient()
+        else:
+            print("The option you have selected:", selected_option)
 
 
-selected_option = list_menu(program_menu)
-print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-      "The option you have selected:", selected_option)
-
-if selected_option == "1":
-    add_oil()
-elif selected_option == "2":
-    list_oils()
-elif selected_option == "3":
-    find_store_oils()
-elif selected_option == "4":
-    list_patients()
-elif selected_option == "5":
-    search_patient()
-else:
-    print("The option you have selected:", selected_option)
+if __name__ == "__main__":
+    main()
