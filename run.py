@@ -60,7 +60,8 @@ def add_oil():
         "Input the ailments the oil addresses by using a , to separate them without a space: ")
     while True:
         try:
-            price = float(input("Input the price value: "))
+            price = float(input(colorama.Style.RESET_ALL +
+                            colorama.Fore.BLUE + "Input the price value: "))
             break
         except ValueError:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -89,7 +90,7 @@ def add_oil():
         re_run = input(
         "Do you want to add another product to the database? Type Yes or No: ")
         if re_run.lower() == "no":
-            break
+            exit()
         elif re_run.lower() == "yes":
             add_oil()
         else:
