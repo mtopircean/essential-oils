@@ -76,6 +76,15 @@ def add_oil():
     data = [my_oil.name, my_oil.ailment, my_oil.price,
                 my_oil.application, my_oil.score]
     update_oils_worksheet(data, "master")
+    
+    while True:
+        re_run = input("Do you want to add another product to the database? Type Yes or No: ")
+        if re_run.lower() == "no":
+            break
+        elif re_run.lower() == "yes":
+            add_oil()
+        else:
+            print(colorama.Fore.RED +  colorama.Style.BRIGHT + "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
     while True:
         return_menu = input(
@@ -87,6 +96,7 @@ def add_oil():
             option_selection = list_menu(program_menu)
             break
         return my_oil
+    
 
 
 def update_oils_worksheet(data, worksheet):
