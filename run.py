@@ -24,13 +24,16 @@ def list_menu(menu_options):
     for option in menu_options:
         print(option)
     while True:
+        print()
         selected_option = input(
             "What do you want to do? Add the number of your option without any other characters:")
         if selected_option.isdigit() and 1 <= int(selected_option) <= 5:
             return selected_option
         else:
+            print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You haven`t selected a valid option.")
+            print()
             print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
                   "Please select a value from 1 to 5 based on the options menu list.")
 
@@ -53,31 +56,39 @@ class Oils:
 
 def add_oil():
     my_oil = Oils()
+    print()
     name = input("Input the name of the oil: ")
+    print()
     ailment = input(
         "Input the ailments the oil addresses. We recommend a format in which, if multiple ailments, separate them by comma and space. For example: headace, toothache. Please provide input: ")
     while True:
         try:
+            print()
             price = float(input(colorama.Style.RESET_ALL +
                                 colorama.Fore.BLUE + "Input the price value: "))
             break
         except ValueError:
+            print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
 
     while True:
+        print()
         application = input(colorama.Style.RESET_ALL +
                             colorama.Fore.BLUE + "Does it need a difuser(Yes/No): ")
         if application.lower() == "yes" or application.lower() == "no":
             break
         else:
+            print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
     score = price / 100 + (0 if application == "yes" else 1)
 
     my_oil.eo_catalogue(name, ailment, price, application, score)
+    print()
     print(f"You added {my_oil.name} to the database")
+    print()
     print(my_oil)
 
     data = [my_oil.name, my_oil.ailment, my_oil.price,
@@ -85,19 +96,24 @@ def add_oil():
     update_oils_worksheet(data, "master")
 
     while True:
+        print()
         re_run = input(
             "Do you want to add another product to the database? Type Yes or No: ")
         if re_run.lower() == "no":
+            print()
             main_menu = input(
                 "Do you want to exit to main menu? Type Yes if you want to return to main:")
+            print()
             if main_menu.lower() == "yes":
                 main()
             else:
+                print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
         elif re_run.lower() == "yes":
             add_oil()
         else:
+            print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
@@ -106,6 +122,7 @@ def update_oils_worksheet(data, worksheet):
     """
     Update excel sheet tab named master.
     """
+    print()
     print(colorama.Style.RESET_ALL +
           colorama.Fore.BLUE + f"Updating {worksheet}.")
     worksheet_master = SHEET.worksheet(worksheet)
@@ -113,8 +130,9 @@ def update_oils_worksheet(data, worksheet):
 
     oil_data = [data[0], data[1], data[2], data[3], data[4]]
     worksheet_master.insert_row(oil_data, following_row)
-
+    print()
     print(f"{worksheet} updated.")
+    print()
 
 
 def list_oils():
@@ -130,18 +148,22 @@ def list_oils():
         oils_table.append([oil['Oil Name'], oil['Ailment'],
                           oil['Price'], oil['Application'], oil['Score']])
 
+    print()
     print("Here is a list of all your stored oils:")
+    print()
     print(tabulate(oils_table, headers=[
           "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
+    print()
     main_menu = input(
         "Do you want to exit to main menu? Type Yes if you want to return to main:")
+    print()
     if main_menu.lower() == "yes":
         main()
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
-
+        print()
 
 def find_store_oils():
     """
@@ -153,6 +175,7 @@ def find_store_oils():
     all_oils = worksheet.get_all_records()
 
     while True:
+        print()
         search_criteria = input(
             "Input the name of the oil or the ailment you need to address: ")
 
@@ -164,27 +187,31 @@ def find_store_oils():
                 matching_oils.append(oil)
 
         if matching_oils:
+            print()
             print("Please find bellow your search result:")
             search_table = []
             for oil in matching_oils:
                 search_table.append([oil['Oil Name'], oil['Ailment'],
                                      oil['Price'], oil['Application'], oil['Score']])
-
+            print()
             print("Here is your search result:")
+            print()
             print(tabulate(search_table, headers=[
                 "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
             add_patient = None
             while add_patient not in ["yes", "no"]:
+                print()
                 add_patient = input(
                     "Do you want to save your search connected to a patient name? Type Yes/No: ").lower()
 
                 if add_patient not in ["yes", "no"]:
+                    print()
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
                           "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
             if add_patient.lower() == "yes":
-
+                print()
                 sheet_name = input(
                     "List patient`s name:")
                 patients_sheet = SHEET.worksheet("patients_list")
@@ -193,6 +220,7 @@ def find_store_oils():
                                   for patient in patients_data]
 
                 if sheet_name in patients_names:
+                    print()
                     print(
                         colorama.Style.RESET_ALL + colorama.Fore.BLUE + "Patient already has a record. Your new search will be appended to the existing one.")
                     patient_index = patients_names.index(sheet_name)
@@ -200,6 +228,7 @@ def find_store_oils():
                     patients_sheet.insert_row([], next_search)
 
                 else:
+                    print()
                     print("Adding a new patient to your list.")
                     patients_sheet.append_row([sheet_name])
 
@@ -207,24 +236,30 @@ def find_store_oils():
                     oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
                                 oil['Price'], oil['Application'], oil['Score']]
                     patients_sheet.append_row(oil_data)
+                print()
                 print("Your search was added to your search history")
 
         else:
+            print()
             print(
                 "We couldn`t find any result matching your search criteria. Please search again")
-
+        print()
         new_search = input("Do you want to run a new search? Type Yes/No: ")
         while new_search.lower() not in ["yes", "no"]:
+            print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+            print()
             new_search = input(
                 "Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
+            print()
             main_menu = input(
                 "Do you want to exit to main menu? Type Yes if you want to return to main:")
             if main_menu.lower() == "yes":
                 main()
             else:
+                print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
@@ -241,17 +276,19 @@ def list_patients():
     for patient in all_patients:
         patients_table.append([patient['Patient Name'], patient['Oil Name'],
                               patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
-
+    print()
     print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
           "Here is a list of all your stored patients:")
+    print()
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
-
+    print()
     main_menu = input(
         "Do you want to exit to main menu? Type Yes if you want to return to main:")
     if main_menu.lower() == "yes":
         main()
     else:
+        print()
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
@@ -263,7 +300,7 @@ def search_patient():
     worksheet_id = "patients_list"
     worksheet = SHEET.worksheet(worksheet_id)
     all_patients = worksheet.get_all_records()
-
+    print()
     search_criteria = input(
         "Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
     matching_patient = []
@@ -276,27 +313,34 @@ def search_patient():
         for patient in matching_patient:
             patients_table.append([patient['Patient Name'], patient['Oil Name'],
                                    patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
+        print()
         print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
               "Here is a list of entries for the patient searched:")
+        print()
         print(tabulate(patients_table, headers=[
             "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
     else:
+        print()
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
-
+    print()
     new_search = input("Do you want to run a new search? Type Yes/No: ")
     while new_search.lower() not in ["yes", "no"]:
+        print()
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+        print()
         new_search = input(
                 "Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
+            print()
             main_menu = input(
                 "Do you want to exit to main menu? Type Yes if you want to return to main:")
             if main_menu.lower() == "yes":
                 main()
             else:
+                print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
@@ -305,6 +349,7 @@ def main():
     while True:
 
         selected_option = list_menu(program_menu)
+        print()
         print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
               "The option you have selected:", selected_option)
 
@@ -319,6 +364,7 @@ def main():
         elif selected_option == "5":
             search_patient()
         else:
+            print()
             print("The option you have selected:", selected_option)
 
 
