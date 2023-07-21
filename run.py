@@ -220,7 +220,13 @@ def find_store_oils():
             new_search = input(
                 "Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
-            break
+            main_menu = input(
+            "Do you want to exit to main menu? Type Yes if you want to return to main:")
+            if main_menu.lower() == "yes":
+                main()
+            else:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def list_patients():
@@ -261,19 +267,24 @@ def search_patient():
     search_criteria = input(
         "Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
     matching_patient = []
-    found_patient = False
     for patient in all_patients:
         if 'Patient Name' in patient and search_criteria.lower() in patient['Patient Name'].lower():
             matching_patient.append(patient)
-            found_patient = True
-        else:
-            pass
-    if found_patient:
+        
+    if matching_patient:
+        patients_table = []
         for patient in matching_patient:
-            print(patient, end="\n")
+            patients_table.append([patient['Patient Name'], patient['Oil Name'],
+                              patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
+        print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+          "Here is a list of entries for the patient searched:")
+        print(tabulate(patients_table, headers=[
+          "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+       
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
+    
     main_menu = input(
         "Do you want to exit to main menu? Type Yes if you want to return to main:")
     if main_menu.lower() == "yes":
