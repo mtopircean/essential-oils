@@ -221,12 +221,12 @@ def find_store_oils():
                 "Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
             main_menu = input(
-            "Do you want to exit to main menu? Type Yes if you want to return to main:")
+                "Do you want to exit to main menu? Type Yes if you want to return to main:")
             if main_menu.lower() == "yes":
                 main()
             else:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+                      "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def list_patients():
@@ -270,28 +270,36 @@ def search_patient():
     for patient in all_patients:
         if 'Patient Name' in patient and search_criteria.lower() in patient['Patient Name'].lower():
             matching_patient.append(patient)
-        
+
     if matching_patient:
         patients_table = []
         for patient in matching_patient:
             patients_table.append([patient['Patient Name'], patient['Oil Name'],
-                              patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
+                                   patient['Ailment'], patient['Price'], patient['Application'], patient['Score']])
         print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-          "Here is a list of entries for the patient searched:")
+              "Here is a list of entries for the patient searched:")
         print(tabulate(patients_table, headers=[
-          "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
-       
+            "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "Your search hasn`t returned any result. Please check that the name is spelled correctly and search again.")
-    
-    main_menu = input(
-        "Do you want to exit to main menu? Type Yes if you want to return to main:")
-    if main_menu.lower() == "yes":
-        main()
-    else:
+
+    new_search = input("Do you want to run a new search? Type Yes/No: ")
+    while new_search.lower() not in ["yes", "no"]:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+                  "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+        new_search = input(
+                "Do you want to run a new search? Type Yes/No: ")
+    if new_search.lower() != "yes":
+        main_menu = input(
+            "Do you want to exit to main menu? Type Yes if you want to return to main:")
+        if main_menu.lower() == "yes":
+            main()
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                    "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+
 
 def main():
     while True:
