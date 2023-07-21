@@ -291,14 +291,14 @@ def search_patient():
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
         new_search = input(
                 "Do you want to run a new search? Type Yes/No: ")
-    if new_search.lower() != "yes":
-        main_menu = input(
-            "Do you want to exit to main menu? Type Yes if you want to return to main:")
-        if main_menu.lower() == "yes":
-            main()
-        else:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                    "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+        if new_search.lower() != "yes":
+            main_menu = input(
+                "Do you want to exit to main menu? Type Yes if you want to return to main:")
+            if main_menu.lower() == "yes":
+                main()
+            else:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                      "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def main():
