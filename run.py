@@ -55,7 +55,7 @@ def add_oil():
     my_oil = Oils()
     name = input("Input the name of the oil: ")
     ailment = input(
-        "Input the ailments the oil addresses by using a , to separate them without a space: ")
+        "Input the ailments the oil addresses. We recommend a format in which, if multiple ailments, separate them by comma and space. For example: headace, toothache. Please provide input: ")
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
