@@ -20,6 +20,14 @@ program_menu = ("1. Add a product to the database", "2. List oils database",
 
 
 def list_menu(menu_options):
+
+    """
+    Function set in order to display to the user a main menu option.
+    It starts a while loop which runs until user selects an option.
+    Option is validated as an integer between 1 and 5 including, and validates the selection.
+    Print messages are set to handle alll scenarios: selected option, wrong type of parameter selected.
+    """
+
     print(colorama.Fore.BLUE  + colorama.Style.BRIGHT + "Options Menu:")
     for option in menu_options:
         print(option)
