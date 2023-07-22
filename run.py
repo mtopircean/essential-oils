@@ -179,8 +179,7 @@ def update_oils_worksheet(data, worksheet):
     worksheet_master = SHEET.worksheet(worksheet)
     following_row = len(worksheet_master.get_all_values()) + 1
 
-    oil_data = [data[0], data[1], data[2], data[3], data[4]]
-    worksheet_master.insert_row(oil_data, following_row)
+    worksheet_master.insert_row(data, following_row)
     print()
     print(colorama.Style.RESET_ALL + colorama.Fore.BLUE + f"{worksheet} updated.")
     print()
