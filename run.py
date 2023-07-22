@@ -187,7 +187,13 @@ def update_oils_worksheet(data, worksheet):
 
 def list_oils():
     """
-    Pull database of oils from worksheet.
+    Function defined in order to pull the data from the master worksheet and return it into a table format for the user.
+    Function:
+        - pulls the data using all_oils and appends it to a new list called oils_table
+        - using tabulate it then prints the result into a grid table format
+    As all functions, it then gives the user an option to jump to main menu.
+
+    Note: Tabulate how to install and use is using inspiration from: https://pypi.org/project/tabulate/.
     """
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -217,12 +223,28 @@ def list_oils():
 
 def find_store_oils():
     """
-    Find multiple oils in the database.
+    Function created to allow user to search over the database and retrieve an oil based on either a name or ailment.
+    It is designed so it allows even partial parts of the words, so it gives flexibility and allows the user to limit
+    their mistakes to a minimum.
+    It also gives the option to store search under a patient to offer the search history in a different function.
+    Function:
+        - retrieves stored data
+        - allows user to search by either name of ailment
+        - validates and returns a result if it exists, else it prints that no record exists
+        - give the option to run a new search
+        - gives the option to create a patient record of the search or not through a yes / no validation
+        - appends the data to an existing patient, if patient already exists or creates a new one
+        - once user stops it`s search activity can always return to main menu
+
     """
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
+
+    """
+    Search related code section with tabulate styling for returned result.
+    """
 
     while True:
         print()
@@ -248,6 +270,12 @@ def find_store_oils():
             print()
             print(tabulate(search_table, headers=[
                 "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
+
+            """
+            Code allows user to save search under patient name.
+            Uses a series of validations for user inputs.
+            It also validates presence of the patient in the data base and takes an action to either create new or append.
+            """
 
             add_patient = None
             while add_patient not in ["yes", "no"]:
@@ -282,6 +310,10 @@ def find_store_oils():
                     print(colorama.Style.RESET_ALL + colorama.Fore.BLUE + "Adding a new patient to your list.")
                     patients_sheet.append_row([sheet_name])
 
+                """
+                Appends the sheet patient_list in the google sheet EssentialOils.
+                """
+
                 for oil in matching_oils:
                     oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
                                 oil['Price'], oil['Application'], oil['Score']]
@@ -302,6 +334,9 @@ def find_store_oils():
             print()
             new_search = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
                 "Do you want to run a new search? Type Yes/No: ")
+        """
+        Standard functionality across the code to allow the user to return to the main menu.
+        """
         if new_search.lower() != "yes":
             print()
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
@@ -316,12 +351,20 @@ def find_store_oils():
 
 def list_patients():
     """
-    Search a patient.
+    Function created in order to allow user to list their patients database.
+    Function:
+        - pulls all records
+        - presents data in a table format using tabulate
+    Offers again the option to exit to main menu.
     """
     worksheet_id = "patients_list"
     worksheet = SHEET.worksheet(worksheet_id)
     all_patients = worksheet.get_all_records()
 
+    """
+    Creates a list and stores the results in patients_table
+    """
+    
     patients_table = []
     for patient in all_patients:
         patients_table.append([patient['Patient Name'], patient['Oil Name'],
@@ -333,6 +376,11 @@ def list_patients():
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
     print()
+
+    """
+    Returns to main menu.
+    """
+
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
         "Do you want to exit to main menu? Type Yes if you want to return to main:")
     if main_menu.lower() == "yes":
@@ -345,12 +393,24 @@ def list_patients():
 
 def search_patient():
     """
-    Search a patient.
+    Functions allows the user to search for a patient in the database, in the patients_list sheet.
+    Function:
+        - pulls the data in patients_list
+        - takes input from user(takes partial input, partial name for example) and returns the result in a table format
+        - provides through print lines notifications of different actions happening in the program
+        - allows the user to re-run new searches once one is complete
+        - validates input choices and limits the amount of errors for simple decissions: yes or no
+    Provides as normal, the option to return to the main menu
     """
     worksheet_id = "patients_list"
     worksheet = SHEET.worksheet(worksheet_id)
     all_patients = worksheet.get_all_records()
     print()
+
+    """
+    Main input section to allow the user to perform a search and return a result in table format using tabulate.
+    Allows the user to re-run searches if desired.
+    """
     search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
         "Input the name of the patient on a First Name Second Name format. For example John Doe. Please check to make sure spelling is correct before hitting ENTER: ")
     matching_patient = []
@@ -385,6 +445,9 @@ def search_patient():
                 "Do you want to run a new search? Type Yes/No: ")
         if new_search.lower() != "yes":
             print()
+
+            """ Offers user the option to return to main menu"""
+
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
                 "Do you want to exit to main menu? Type Yes if you want to return to main:")
             if main_menu.lower() == "yes":
@@ -396,6 +459,16 @@ def search_patient():
 
 
 def main():
+
+    """
+    Main function called at the end of each section in order to allow users to return and perform the various
+    function/interactions in the program.
+    Uses an infinite loop to allow the program to run until terminated.
+    Through selected_option it takes the input from user in order to identify and return the function the user
+    wants to acess
+
+    """
+
     while True:
 
         selected_option = list_menu(program_menu)
@@ -417,6 +490,12 @@ def main():
             print()
             print("The option you have selected:", selected_option)
 
+
+"""
+Bellow code set in order to sensure the main functions runs not only when called inside a function, but also 
+when the python script is run  python3 run.py.
+Took inspiration from:https://realpython.com/if-name-main-python/
+"""
 
 if __name__ == "__main__":
     main()
