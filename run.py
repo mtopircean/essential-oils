@@ -4,6 +4,10 @@ from google.oauth2.service_account import Credentials
 import colorama
 from tabulate import tabulate
 
+"""
+General setup information done in accordance to LoveSandwiches project and it`s instructions.
+"""
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -48,7 +52,13 @@ def list_menu(menu_options):
 
 class Oils:
     """
-    Oils class
+    Creates a class related to our oil and sets it`s properties. It uses 2 functions to:
+        - eo_catalogue: creates the object related to our oils and sets it`s relevant properties
+        - str self: which defines in which way the added poil is returned, 
+        - as a string with each line one under the other
+    There are a series of attributes that are defined in order to set the main properties of this objects which are:
+    it`s name, the ailment that it addresses, the oil price, it if needs a difuser to apply it and 
+    then a calculated score based on a basic calculation.
     """
 
     def eo_catalogue(self, name, ailment, price, application, score):
@@ -63,7 +73,24 @@ class Oils:
 
 
 def add_oil():
+
+    """
+    Function with main functionality to add oils to the database. This is done by:
+        - requesting through inputs to add the name, ailment, diffuser application, price; note, score is calculated automatically
+        - validates the data provided for application(as yes or no, ignoring upper/lower) and for price(number only with . as a separator)
+    Function allows to run a loop in order for user to keep adding oils if he chooses through a simple yes or no input.
+    If user doesn`t want to add another product, the loop will trigger the option to return to main menu, with a yes or no selection.
+    Each oil added is populated into the "master" sheet in the google sheets called EssentialOils.
+    """
+
+
     my_oil = Oils()
+
+    """
+    Section of code to related to input takes for the different properties needed to be defined by the user.
+    """
+
+
     print()
     name = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + "Input the name of the oil: ")
     print()
@@ -93,6 +120,11 @@ def add_oil():
 
     score = price / 100 + (0 if application == "yes" else 1)
 
+    """
+    Adds the oil and updates the master sheet.
+    It uses an outside function called update_oils_worksheet.
+    """
+    
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print()
     print(colorama.Style.RESET_ALL + colorama.Fore.BLUE + f"You added {my_oil.name} to the database")
@@ -102,6 +134,11 @@ def add_oil():
     data = [my_oil.name, my_oil.ailment, my_oil.price,
             my_oil.application, my_oil.score]
     update_oils_worksheet(data, "master")
+
+    """
+    Loop created to add the user an option to keep adding oils before returning to main menu.
+    It also does a basic validation of their choices, limited to a yes or no option.
+    """
 
     while True:
         print()
@@ -128,7 +165,13 @@ def add_oil():
 
 def update_oils_worksheet(data, worksheet):
     """
-    Update excel sheet tab named master.
+    Function created to update the sheet named master in the EssentialOils google sheet.
+    Function:
+        - informs on updates being made to the sheet
+        - sets the area where the data is transfered to the master sheet, always being the next line by reading it`s row length and adding the data
+        to the next unocupied line
+        - offers confirmation that the update was completed
+
     """
     print()
     print(colorama.Style.RESET_ALL +
