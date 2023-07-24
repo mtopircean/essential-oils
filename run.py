@@ -147,10 +147,13 @@ def add_oil():
         if re_run.lower() == "no":
             print()
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
-                "Do you want to exit to main menu? Type Yes if you want to return to main:")
+                "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
             print()
             if main_menu.lower() == "yes":
                 main()
+            elif main_menu.lower() == "no":
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +"Now exiting program!")
+                exit()
             else:
                 print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -212,10 +215,13 @@ def list_oils():
 
     print()
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
-        "Do you want to exit to main menu? Type Yes if you want to return to main:")
+        "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
     print()
     if main_menu.lower() == "yes":
         main()
+    elif main_menu.lower() == "no":
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +"Now exiting program!")
+        exit()
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
@@ -340,9 +346,12 @@ def find_store_oils():
         if new_search.lower() != "yes":
             print()
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
-                "Do you want to exit to main menu? Type Yes if you want to return to main:")
+                "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
             if main_menu.lower() == "yes":
                 main()
+            elif main_menu.lower() == "no":
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +"Now exiting program!")
+                exit()
             else:
                 print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -382,9 +391,12 @@ def list_patients():
     """
 
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
-        "Do you want to exit to main menu? Type Yes if you want to return to main:")
+        "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
     if main_menu.lower() == "yes":
         main()
+    elif main_menu.lower() == "no":
+        print(colorama.Fore.RED + colorama.Style.BRIGHT + "Now exiting program!")
+        exit()
     else:
         print()
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -449,9 +461,12 @@ def search_patient():
             """ Offers user the option to return to main menu"""
 
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE + 
-                "Do you want to exit to main menu? Type Yes if you want to return to main:")
+                "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
             if main_menu.lower() == "yes":
                 main()
+            elif  main_menu.lower() == "no":
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +"Now exiting program!")
+                exit()
             else:
                 print()
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
