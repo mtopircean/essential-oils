@@ -86,104 +86,37 @@ def add_oil():
     If user doesn`t want to add another product, the loop will trigger the option to return to main menu, with a yes or no selection.
     Each oil added is populated into the "master" sheet in the google sheets called EssentialOils.
     """
-    worksheet_id = "master"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_oils = worksheet.get_all_records()
-
     my_oil = Oils()
-
     """
     Section of code to related to input takes for the different properties needed to be defined by the user.
     """
-
     print()
     name = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-                 "Input the name of the oil: \n")
+                 "Input the name of the oil: ")
     print()
-
-    existing_oil = None
-    for oil in all_oils:
-        if oil["Oil Name"].lower() == name.lower():
-            existing_oil = oil
-            print("Existing oil:")
-            for attribute, value in existing_oil.items():
-                print(f"{attribute}: {value}")
-            new_ailment = input(
-                "Do you want to change the ailment data? Please type in all of the ailments the oil addresses: \n")
-            existing_oil['Ailment'] = new_ailment
-
-            while True:
-                new_price_update = input(
-                    "Do you want to change the price of the oil? Please type in the new price. Please type Yes or No: \n")
-                if new_price_update.lower() == "yes" or new_price_update.lower() == "no":
-                    break
-                else:
-                    print()
-                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
-            new_price = existing_oil['Price']
-            if new_price_update.lower() == "yes":
-                while True:
-                    try:
-                        print()
-                        new_price = float(input(colorama.Style.RESET_ALL +
-                                                colorama.Fore.BLUE + "Input the price value: \n"))
-                        break
-                    except ValueError:
-                        print()
-                        print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                              "You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
-            existing_oil['Price'] = new_price
-
-            while True:
-                new_application = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-                                        "Do you want to update the application type of the oil? Please type in Yes if it needs a difuser and No if it doesn't: \n")
-                if new_application.lower() == "yes" or new_application.lower() == "no":
-                    break
-                else:
-                    print()
-                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
-            existing_oil['Application'] = new_application
-            new_score = float(new_price) / 100 + \
-                (0 if new_application == "yes" else 1)
-            existing_oil['Score'] = new_score
-            for attribute, value in existing_oil.items():
-                print("Here is the oil with the updated data:")
-                print(f"{attribute}: {value}")
-        data = [existing_oil.name, existing_oil.ailment, existing_oil.price,
-                existing_oil.application, existing_oil.score]
-        update_oils_worksheet(data, "master")
-
-        break
-
-    else:
-        ailment = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-                        "Input the ailments the oil addresses. We recommend a format in which, if multiple ailments, separate them by comma and space. For example: headace, toothache. Please provide input: \n")
-        while True:
-            try:
-                print()
-                price = float(input(colorama.Style.RESET_ALL +
-                                    colorama.Fore.BLUE + "Input the price value: \n"))
-                break
-            except ValueError:
-                print()
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
-
-        while True:
+    ailment = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                    "Input the ailments the oil addresses. We recommend a format in which, if multiple ailments, separate them by comma and space. For example: headace, toothache. Please provide input: ")
+    while True:
+        try:
             print()
-            application = input(colorama.Style.RESET_ALL +
-                                colorama.Fore.BLUE + "Does it need a difuser(Yes/No): \n")
-            if application.lower() == "yes" or application.lower() == "no":
-                break
-            else:
-                print()
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
-
-        score = price / 100 + (0 if application == "yes" else 1)
-
+            price = float(input(colorama.Style.RESET_ALL +
+                                colorama.Fore.BLUE + "Input the price value: "))
+            break
+        except ValueError:
+            print()
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "You have not entered a number value. Please write resubmit your answer. Do not use a ',' to separate the decimals, use instead a '.'.")
+    while True:
+        print()
+        application = input(colorama.Style.RESET_ALL +
+                            colorama.Fore.BLUE + "Does it need a difuser(Yes/No): ")
+        if application.lower() == "yes" or application.lower() == "no":
+            break
+        else:
+            print()
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+    score = price / 100 + (0 if application == "yes" else 1)
     """
     Adds the oil and updates the master sheet.
     It uses an outside function called update_oils_worksheet.
@@ -195,44 +128,39 @@ def add_oil():
           f"You added {my_oil.name} to the database")
     print()
     print(my_oil)
-
-
-if existing_oil:
     data = [my_oil.name, my_oil.ailment, my_oil.price,
             my_oil.application, my_oil.score]
     update_oils_worksheet(data, "master")
-
-"""
-Loop created to add the user an option to keep adding oils before returning to main menu.
-It also does a basic validation of their choices, limited to a yes or no option.
-"""
-
-while True:
-    print()
-    re_run = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-                   "Do you want to add another product to the database? Type Yes or No: \n")
-    if re_run.lower() == "no":
+    """
+    Loop created to add the user an option to keep adding oils before returning to main menu.
+    It also does a basic validation of their choices, limited to a yes or no option.
+    """
+    while True:
         print()
-        main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
-                          "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program: \n")
-        print()
-        if main_menu.lower() == "yes":
-            main()
-        elif main_menu.lower() == "no":
+        re_run = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                       "Do you want to add another product to the database? Type Yes or No: ")
+        if re_run.lower() == "no":
             print()
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "Now exiting program!")
-            exit()
+            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                              "Do you want to exit to main menu? Type Yes if you want to return to main. Otherwise type No to exit program:")
+            print()
+            if main_menu.lower() == "yes":
+                main()
+            elif main_menu.lower() == "no":
+                print()
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                      "Now exiting program!")
+                exit()
+            else:
+                print()
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                      "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
+        elif re_run.lower() == "yes":
+            add_oil()
         else:
             print()
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
-    elif re_run.lower() == "yes":
-        add_oil()
-    else:
-        print()
-        print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "You have not selected a valid option. Your answer should be either 'Yes' or 'No'. Please resubmit your answer.")
 
 
 def update_oils_worksheet(data, worksheet):
