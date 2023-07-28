@@ -37,11 +37,11 @@ def list_menu(menu_options):
     selected option, wrong type of parameter selected.
     """
 
-    print(colorama.Fore.BLUE + colorama.Style.BRIGHT + "Options Menu:")
+    print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "Options Menu:")
     for option in menu_options:
         print(option)
     while True:
-        selected_option = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        selected_option = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                                 "What do you want to do?"
                                 "Add the number of your option "
                                 "without any other characters: \n")
@@ -50,7 +50,7 @@ def list_menu(menu_options):
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You haven`t selected a valid option.")
-            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                   "Please select a value from 1 to 5 "
                   "based on the options menu list.")
 
@@ -106,9 +106,9 @@ def add_oil():
     Section of code to related to input takes for
     the different properties needed to be defined by the user.
     """
-    name = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    name = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                  "Input the name of the oil: ")
-    ailment = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    ailment = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                     "Input the ailments the oil addresses."
                     "We recommend a format in which, if multiple ailments,"
                     "separate them by comma and space."
@@ -116,7 +116,7 @@ def add_oil():
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
-                                colorama.Fore.BLUE +
+                                colorama.Fore.CYAN +
                                 "Input the price value: "))
             break
         except ValueError:
@@ -127,7 +127,7 @@ def add_oil():
                   "use instead a '.'.")
     while True:
         application = input(colorama.Style.RESET_ALL +
-                            colorama.Fore.BLUE +
+                            colorama.Fore.CYAN +
                             "Does it need a difuser(Yes/No): ")
         if application.lower() == "yes" or application.lower() == "no":
             break
@@ -143,7 +143,7 @@ def add_oil():
     """
 
     my_oil.eo_catalogue(name, ailment, price, application, score)
-    print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
           f"You added {my_oil.name} to the database")
     print(my_oil)
     data = [my_oil.name, my_oil.ailment, my_oil.price,
@@ -156,11 +156,11 @@ def add_oil():
     limited to a yes or no option.
     """
     while True:
-        re_run = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        re_run = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                        "Do you want to add another product to the database?"
                        "Type Yes or No: ")
         if re_run.lower() == "no":
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                               "Do you want to exit to main menu?"
                               "Type Yes if you want to return to main."
                               "Otherwise type No to exit program:")
@@ -198,13 +198,13 @@ def update_oils_worksheet(data, worksheet):
 
     """
     print(colorama.Style.RESET_ALL +
-          colorama.Fore.BLUE + f"Updating {worksheet}.")
+          colorama.Fore.CYAN + f"Updating {worksheet}.")
     worksheet_master = SHEET.worksheet(worksheet)
     following_row = len(worksheet_master.get_all_values()) + 1
 
     worksheet_master.insert_row(data, following_row)
     print(colorama.Style.RESET_ALL +
-          colorama.Fore.BLUE + f"{worksheet} updated.")
+          colorama.Fore.CYAN + f"{worksheet} updated.")
 
 
 def list_oils():
@@ -230,12 +230,12 @@ def list_oils():
         oils_table.append([oil['Oil Name'], oil['Ailment'],
                           oil['Price'], oil['Application'], oil['Score']])
 
-    print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
           "Here is a list of all your stored oils:")
     print(tabulate(oils_table, headers=[
           "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
-    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                       "Do you want to exit to main menu?"
                       "Type Yes if you want to return to main."
                       "Otherwise type No to exit program: \n")
@@ -285,7 +285,7 @@ def find_store_oils():
 
     while True:
         search_criteria = input(colorama.Style.RESET_ALL +
-                                colorama.Fore.BLUE +
+                                colorama.Fore.CYAN +
                                 "Input the name of the oil "
                                 "or the ailment you need to address: \n")
 
@@ -297,7 +297,7 @@ def find_store_oils():
                 matching_oils.append(oil)
 
         if matching_oils:
-            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                   "Please find bellow your search result:")
             search_table = []
             for oil in matching_oils:
@@ -305,7 +305,7 @@ def find_store_oils():
                     [oil['Oil Name'], oil['Ailment'],
                      oil['Price'], oil['Application'],
                      oil['Score']])
-            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                   "Here is your search result:")
             print(tabulate(search_table, headers=[
                 "Oil Name", "Ailment",
@@ -322,7 +322,7 @@ def find_store_oils():
             add_patient = None
             while add_patient not in ["yes", "no"]:
                 add_patient = input(colorama.Style.RESET_ALL +
-                                    colorama.Fore.BLUE +
+                                    colorama.Fore.CYAN +
                                     "Do you want to save your search "
                                     "connected to a patient name? "
                                     "Type Yes/No: \n").lower()
@@ -335,7 +335,7 @@ def find_store_oils():
 
             if add_patient.lower() == "yes":
                 sheet_name = input(colorama.Style.RESET_ALL +
-                                   colorama.Fore.BLUE +
+                                   colorama.Fore.CYAN +
                                    "List patient`s name: \n")
                 patients_sheet = SHEET.worksheet("patients_list")
                 patients_data = patients_sheet.get_all_records()
@@ -344,7 +344,7 @@ def find_store_oils():
 
                 if sheet_name in patients_names:
                     print(
-                        colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                        colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                         "Patient already has a record. "
                         "Your new search will be appended "
                         "to the existing one.")
@@ -353,7 +353,7 @@ def find_store_oils():
                     patients_sheet.insert_row([], next_search)
 
                 else:
-                    print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                    print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                           "Adding a new patient to your list.")
                     patients_sheet.append_row([sheet_name])
 
@@ -366,21 +366,21 @@ def find_store_oils():
                     oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
                                 oil['Price'], oil['Application'], oil['Score']]
                     patients_sheet.append_row(oil_data)
-                print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+                print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                       "Your search was added to your search history")
 
         else:
-            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                   "We couldn`t find any result matching "
                   "your search criteria. Please search again")
-        new_search = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        new_search = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                            "Do you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.")
-            new_search = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            new_search = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                                "Do you want to run a new search? "
                                "Type Yes/No: \n")
         """
@@ -388,7 +388,7 @@ def find_store_oils():
          to allow the user to return to the main menu.
         """
         if new_search.lower() != "yes":
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                               "Do you want to exit to main menu? "
                               "Type Yes if you want to return to main. "
                               "Otherwise type No to exit program: \n")
@@ -427,7 +427,7 @@ def list_patients():
             [patient['Patient Name'], patient['Oil Name'],
              patient['Ailment'], patient['Price'],
              patient['Application'], patient['Score']])
-    print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
           "Here is a list of all your stored patients:")
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name",
@@ -438,7 +438,7 @@ def list_patients():
     Returns to main menu.
     """
 
-    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                       "Do you want to exit to main menu?"
                       "Type Yes if you want to return to main. "
                       "Otherwise type No to exit program: \n")
@@ -480,7 +480,7 @@ def search_patient():
         and return a result in table format using tabulate.
         Allows the user to re-run searches if desired.
         """
-        search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                                 "Input the name of the patient"
                                 "on a First Name"
                                 "Second Name format. For example John Doe. "
@@ -498,7 +498,7 @@ def search_patient():
                     [patient['Patient Name'], patient['Oil Name'],
                      patient['Ailment'], patient['Price'],
                      patient['Application'], patient['Score']])
-            print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                   "Here is a list of entries for the patient searched:")
             print(tabulate(patients_table, headers=[
                 "Patient Name", "Oil Name", "Ailment",
@@ -509,21 +509,21 @@ def search_patient():
                   "Your search hasn`t returned any result."
                   "Please check that the name is spelled "
                   "correctly and search again.")
-        new_search = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        new_search = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                            "Do you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option."
                   "Your answer should be either 'Yes' or 'No'."
                   "Please resubmit your answer.")
-            new_search = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            new_search = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                                "Do you want to run a new search? "
                                "Type Yes/No: \n")
         if new_search.lower() != "yes":
 
             """ Offers user the option to return to main menu"""
 
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
                               "Do you want to exit to main menu?"
                               "Type Yes if you want to return to main."
                               "Otherwise type No to exit program: \n")
@@ -555,7 +555,7 @@ def main():
     while True:
 
         selected_option = list_menu(program_menu)
-        print(colorama.Style.RESET_ALL + colorama.Fore.BLUE +
+        print(colorama.Style.RESET_ALL + colorama.Fore.CYAN +
               "The option you have selected:", selected_option)
 
         if selected_option == "1":
