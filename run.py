@@ -37,22 +37,22 @@ def list_menu(menu_options):
     selected option, wrong type of parameter selected.
     """
 
-    print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "Options Menu:")
+    print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "\nOptions Menu:\n")
     for option in menu_options:
         print(option)
     while True:
         selected_option = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                                "What do you want to do?"
+                                "\nWhat do you want to do? "
                                 "Add the number of your option "
                                 "without any other characters: \n")
         if selected_option.isdigit() and 1 <= int(selected_option) <= 5:
             return selected_option
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You haven`t selected a valid option.")
+                  "\nYou haven`t selected a valid option.\n")
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                   "Please select a value from 1 to 5 "
-                  "based on the options menu list.")
+                  "based on the options menu list.\n")
 
 
 class Oils:
@@ -107,35 +107,35 @@ def add_oil():
     the different properties needed to be defined by the user.
     """
     name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                 "Input the name of the oil: ")
+                 "Input the name of the oil: \n")
     ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                    "Input the ailments the oil addresses."
-                    "We recommend a format in which, if multiple ailments,"
-                    "separate them by comma and space."
-                    "For example: headace, toothache. Please provide input: ")
+                    "Input the ailments the oil addresses. "
+                    "We recommend a format in which, if multiple ailments, "
+                    "separate them by comma and space. "
+                    "For example: headace, toothache. Please provide input: \n")
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
-                                "Input the price value: "))
+                                "Input the price value: \n"))
             break
         except ValueError:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a number value."
-                  "Please write resubmit your answer."
-                  "Do not use a ',' to separate the decimals,"
-                  "use instead a '.'.")
+                  "You have not entered a number value. "
+                  "Please write resubmit your answer. "
+                  "Do not use a ',' to separate the decimals, "
+                  "use instead a '.'.\n")
     while True:
         application = input(colorama.Style.RESET_ALL +
                             colorama.Fore.WHITE +
-                            "Does it need a difuser(Yes/No): ")
+                            "Does it need a difuser(Yes/No): \n")
         if application.lower() == "yes" or application.lower() == "no":
             break
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option."
-                  "Your answer should be either 'Yes' or 'No'."
-                  "Please resubmit your answer.")
+                  "You have not selected a valid option. "
+                  "Your answer should be either 'Yes' or 'No'. "
+                  "Please resubmit your answer.\n")
     score = price / 100 + (0 if application == "yes" else 1)
     """
     Adds the oil and updates the master sheet.
@@ -144,7 +144,7 @@ def add_oil():
 
     my_oil.eo_catalogue(name, ailment, price, application, score)
     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-          f"You added {my_oil.name} to the database")
+          f"You added {my_oil.name} to the database\n")
     print(my_oil)
     data = [my_oil.name, my_oil.ailment, my_oil.price,
             my_oil.application, my_oil.score]
@@ -157,31 +157,31 @@ def add_oil():
     """
     while True:
         re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                       "Do you want to add another product to the database?"
-                       "Type Yes or No: ")
+                       "Do you want to add another product to the database? "
+                       "Type Yes or No: \n")
         if re_run.lower() == "no":
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "Do you want to exit to main menu?"
-                              "Type Yes if you want to return to main."
-                              "Otherwise type No to exit program:")
+                              "\nDo you want to exit to main menu? "
+                              "Type Yes if you want to return to main. "
+                              "Otherwise type No to exit program: \n")
             if main_menu.lower() == "yes":
                 main()
             elif main_menu.lower() == "no":
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!")
+                      "Now exiting program!\n")
                 exit()
             else:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option."
-                      "Your answer should be either 'Yes' or 'No'."
-                      "Please resubmit your answer.")
+                      "You have not selected a valid option. "
+                      "Your answer should be either 'Yes' or 'No'. "
+                      "Please resubmit your answer.\n")
         elif re_run.lower() == "yes":
             add_oil()
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option."
-                  "Your answer should be either 'Yes' or 'No'."
-                  "Please resubmit your answer.")
+                  "You have not selected a valid option. "
+                  "Your answer should be either 'Yes' or 'No'. "
+                  "Please resubmit your answer.\n")
 
 
 def update_oils_worksheet(data, worksheet):
@@ -204,7 +204,7 @@ def update_oils_worksheet(data, worksheet):
 
     worksheet_master.insert_row(data, following_row)
     print(colorama.Style.RESET_ALL +
-          colorama.Fore.WHITE + f"{worksheet} updated.")
+          colorama.Fore.WHITE + f"{worksheet} updated.\n")
 
 
 def list_oils():
@@ -231,25 +231,25 @@ def list_oils():
                           oil['Price'], oil['Application'], oil['Score']])
 
     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-          "Here is a list of all your stored oils:")
+          "Here is a list of all your stored oils: \n")
     print(tabulate(oils_table, headers=[
           "Oil Name", "Ailment", "Price", "Application", "Score"], tablefmt="grid"))
 
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "Do you want to exit to main menu?"
-                      "Type Yes if you want to return to main."
+                      "\nDo you want to exit to main menu? "
+                      "Type Yes if you want to return to main. "
                       "Otherwise type No to exit program: \n")
     if main_menu.lower() == "yes":
         main()
     elif main_menu.lower() == "no":
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "Now exiting program!")
+              "Now exiting program!\n")
         exit()
     else:
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "You have not selected a valid option."
-              "Your answer should be either 'Yes' or 'No'."
-              "Please resubmit your answer.")
+              "You have not selected a valid option. "
+              "Your answer should be either 'Yes' or 'No'. "
+              "Please resubmit your answer.\n")
 
 
 def find_store_oils():
@@ -298,7 +298,7 @@ def find_store_oils():
 
         if matching_oils:
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                  "Please find bellow your search result:")
+                  "Please find bellow your search result: \n")
             search_table = []
             for oil in matching_oils:
                 search_table.append(
@@ -306,7 +306,7 @@ def find_store_oils():
                      oil['Price'], oil['Application'],
                      oil['Score']])
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                  "Here is your search result:")
+                  "Here is your search result: \n")
             print(tabulate(search_table, headers=[
                 "Oil Name", "Ailment",
                 "Price", "Application", "Score"], tablefmt="grid"))
@@ -331,7 +331,7 @@ def find_store_oils():
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
                           "You have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
-                          "Please resubmit your answer.")
+                          "Please resubmit your answer.\n")
 
             if add_patient.lower() == "yes":
                 sheet_name = input(colorama.Style.RESET_ALL +
@@ -347,14 +347,14 @@ def find_store_oils():
                         colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                         "Patient already has a record. "
                         "Your new search will be appended "
-                        "to the existing one.")
+                        "to the existing one.\n")
                     patient_index = patients_names.index(sheet_name)
                     next_search = len(patients_data[patient_index]) + 1
                     patients_sheet.insert_row([], next_search)
 
                 else:
                     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                          "Adding a new patient to your list.")
+                          "Adding a new patient to your list.\n")
                     patients_sheet.append_row([sheet_name])
 
                 """
@@ -367,19 +367,19 @@ def find_store_oils():
                                 oil['Price'], oil['Application'], oil['Score']]
                     patients_sheet.append_row(oil_data)
                 print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "Your search was added to your search history")
+                      "Your search was added to your search history.\n")
 
         else:
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                   "We couldn`t find any result matching "
-                  "your search criteria. Please search again")
+                  "your search criteria. Please search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                            "Do you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
-                  "Please resubmit your answer.")
+                  "Please resubmit your answer.\n")
             new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                                "Do you want to run a new search? "
                                "Type Yes/No: \n")
@@ -389,20 +389,20 @@ def find_store_oils():
         """
         if new_search.lower() != "yes":
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "Do you want to exit to main menu? "
+                              "\nDo you want to exit to main menu? "
                               "Type Yes if you want to return to main. "
                               "Otherwise type No to exit program: \n")
             if main_menu.lower() == "yes":
                 main()
             elif main_menu.lower() == "no":
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!")
+                      "Now exiting program!\n")
                 exit()
             else:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "You have not selected a valid option. "
                       "Your answer should be either 'Yes' or 'No'. "
-                      "Please resubmit your answer.")
+                      "Please resubmit your answer.\n")
 
 
 def list_patients():
@@ -428,7 +428,7 @@ def list_patients():
              patient['Ailment'], patient['Price'],
              patient['Application'], patient['Score']])
     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-          "Here is a list of all your stored patients:")
+          "Here is a list of all your stored patients: \n")
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name",
           "Ailment", "Price",
@@ -439,7 +439,7 @@ def list_patients():
     """
 
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "Do you want to exit to main menu?"
+                      "\nDo you want to exit to main menu? "
                       "Type Yes if you want to return to main. "
                       "Otherwise type No to exit program: \n")
     if main_menu.lower() == "yes":
@@ -452,7 +452,7 @@ def list_patients():
         print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "You have not selected a valid option. "
               "Your answer should be either 'Yes' or 'No'. "
-              "Please resubmit your answer.")
+              "Please resubmit your answer.\n")
 
 
 def search_patient():
@@ -481,10 +481,10 @@ def search_patient():
         Allows the user to re-run searches if desired.
         """
         search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                                "Input the name of the patient"
-                                "on a First Name"
+                                "Input the name of the patient "
+                                "on a First Name "
                                 "Second Name format. For example John Doe. "
-                                "Please check to make sure"
+                                "Please check to make sure "
                                 "spelling is correct before hitting ENTER: \n")
         matching_patient = []
         for patient in all_patients:
@@ -499,23 +499,23 @@ def search_patient():
                      patient['Ailment'], patient['Price'],
                      patient['Application'], patient['Score']])
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                  "Here is a list of entries for the patient searched:")
+                  "Here is a list of entries for the patient searched: \n")
             print(tabulate(patients_table, headers=[
                 "Patient Name", "Oil Name", "Ailment",
                 "Price", "Application", "Score"], tablefmt="grid"))
 
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "Your search hasn`t returned any result."
+                  "Your search hasn`t returned any result. "
                   "Please check that the name is spelled "
-                  "correctly and search again.")
+                  "correctly and search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                            "Do you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option."
-                  "Your answer should be either 'Yes' or 'No'."
-                  "Please resubmit your answer.")
+                  "You have not selected a valid option. "
+                  "Your answer should be either 'Yes' or 'No'. "
+                  "Please resubmit your answer.\n")
             new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                                "Do you want to run a new search? "
                                "Type Yes/No: \n")
@@ -524,20 +524,20 @@ def search_patient():
             """ Offers user the option to return to main menu"""
 
             main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "Do you want to exit to main menu?"
-                              "Type Yes if you want to return to main."
+                              "\nDo you want to exit to main menu? "
+                              "Type Yes if you want to return to main. "
                               "Otherwise type No to exit program: \n")
             if main_menu.lower() == "yes":
                 main()
             elif main_menu.lower() == "no":
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!")
+                      "Now exiting program!\n")
                 exit()
             else:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option."
+                      "You have not selected a valid option. "
                       "Your answer should be either 'Yes' or 'No'. "
-                      "Please resubmit your answer.")
+                      "Please resubmit your answer.\n")
 
 
 def main():
@@ -556,7 +556,8 @@ def main():
 
         selected_option = list_menu(program_menu)
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-              "The option you have selected:", selected_option)
+              colorama.Style.BRIGHT +
+              "\nThe option you have selected: ", selected_option + "\n")
 
         if selected_option == "1":
             add_oil()
@@ -569,7 +570,8 @@ def main():
         elif selected_option == "5":
             search_patient()
         else:
-            print("The option you have selected:", selected_option)
+            print(colorama.Style.BRIGHT +
+                  "\nThe option you have selected:", selected_option + "\n")
 
 
 """
