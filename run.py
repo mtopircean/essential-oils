@@ -486,6 +486,15 @@ def search_patient():
                                 "Second Name format. For example John Doe. "
                                 "Please check to make sure "
                                 "spelling is correct before hitting ENTER: \n")
+        if search_criteria.strip() == "":
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "You have not entered a valid option. "
+                  "Please make sure your field is not empty.")
+            search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                    "Enter the name again and hit enter: ")
+        else:
+            break
+
         matching_patient = []
         for patient in all_patients:
             if 'Patient Name' in patient and search_criteria.lower() in patient['Patient Name'].lower():

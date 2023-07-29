@@ -99,6 +99,7 @@ The use of tabulate and font styles was done in order to structure the data in a
 Even with the interface limitations, I`ve tried to create and maintain a database theme by using tabulate in order to return the data in a more pleasent, easy to follow way.
 The use of different colors and font highlight was done to create structure and an ease in understanding and reading the different messages returned by the app.
 ![Alt text](/readme/images/tabulate.jpg)
+z
 
 
 #### Colour Selection
