@@ -288,6 +288,15 @@ def find_store_oils():
                                 colorama.Fore.WHITE +
                                 "Input the name of the oil "
                                 "or the ailment you need to address: \n")
+        while True:
+            search_criteria.strip() == ""
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "You have not entered a valid option. "
+                  "Please make sure your field is not empty.")
+            search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                    "Enter the name again and hit enter: ")
+        else:
+            break
 
         matching_oils = []
         for oil in all_oils:
@@ -486,10 +495,11 @@ def search_patient():
                                 "Second Name format. For example John Doe. "
                                 "Please check to make sure "
                                 "spelling is correct before hitting ENTER: \n")
-        if search_criteria.strip() == "":
+        while True:
+            search_criteria.strip() == ""
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid option. "
-                  "Please make sure your field is not empty.")
+                "You have not entered a valid option. "
+                "Please make sure your field is not empty.")
             search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                                     "Enter the name again and hit enter: ")
         else:
