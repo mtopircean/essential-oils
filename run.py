@@ -118,7 +118,7 @@ def add_oil():
         try:
             price = float(input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
-                                \n"Input the Euro price value. "
+                                "\nInput the Euro price value. "
                                 "Use a '.' decimal format, ex 3.1 . "
                                 "Provide your input: \n"))
             break
