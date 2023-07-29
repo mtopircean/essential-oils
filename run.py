@@ -131,7 +131,7 @@ def add_oil():
     while True:
         application = input(colorama.Style.RESET_ALL +
                             colorama.Fore.WHITE +
-                            "\nCan it be used with a difuser?(Yes/No): \n")
+                            "\nCan it be used with a difuser?(Yes/No): \n").strip()
         if application.lower() == "yes" or application.lower() == "no":
             break
         else:
@@ -139,7 +139,7 @@ def add_oil():
                   "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
-    score = price / 100 + (1 if application == "yes" else 0)
+    score = price / 10 * 0.30 + float(10 if application == "yes" else 0)
     """
     Adds the oil and updates the master sheet.
     It uses an outside function called update_oils_worksheet.
