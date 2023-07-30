@@ -109,8 +109,16 @@ def add_oil():
     Section of code to related to input takes for
     the different properties needed to be defined by the user.
     """
-    name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                 "Input the name of the oil: \n")
+    while True:
+        name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                    "Input the name of the oil: \n")
+        if name.strip():
+            break
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "\nYou have not added a valid oil name."
+                "Please make sure that the field is not empty"
+                "or it contains only blank spaces.\n")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -119,7 +127,9 @@ def add_oil():
     for oil in all_oils:
         if oil["Oil Name"].lower() == name:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "\nThe oil already exists in the database.")
+                "\nThe oil already exists in the database."
+                "If you want to modify an existing oil,"
+                "Use the Modify oil data from the main menu\n")
             ailment=oil["Ailment"]
             price=oil["Eur Price"]
             application=oil["Diffuser suitable"]
@@ -152,13 +162,20 @@ def add_oil():
                         "You have not selected a valid option. "
                         "Your answer should be either 'Yes' or 'No'. "
                         "Please resubmit your answer.\n")
-
-    ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                    "\nInput the ailments the oil addresses. "
-                    "We recommend a format in which, if multiple ailments, "
-                    "separate them by ',' and space. "
-                    "For example: headace, toothache. "
-                    "Please provide your input: \n")
+    while True:
+        ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nInput the ailments the oil addresses. "
+                        "We recommend a format in which, if multiple ailments, "
+                        "separate them by ',' and space. "
+                        "For example: headace, toothache. "
+                        "Please provide your input: \n")
+        if ailment.strip():
+            break
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "\nYou have not added a valid ailment name."
+                "Please make sure that the field is not empty"
+                "or it contains only blank spaces.\n")
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
