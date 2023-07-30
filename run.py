@@ -474,10 +474,10 @@ def modify_oil():
                      "Enter the name of the oil you want to modify: ").strip()
     
     existing_oil = None
-    for oil in all_oils:
+    for index, oil in enumerate(all_oils, start=2):
         if oil["Oil Name"].lower() == oil_name.lower():
             existing_oil = oil
-            break
+            existing_oil["row"] = index
 
     if existing_oil:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -514,7 +514,10 @@ def modify_oil():
         existing_oil["Diffuser suitable"] = application
         existing_oil["Score"] = score
 
-        
+        worksheet.update_cell(existing_oil["row"], 2, ailment)
+        worksheet.update_cell(existing_oil["row"], 3, price)
+        worksheet.update_cell(existing_oil["row"], 4, application)
+        worksheet.update_cell(existing_oil["row"], 5, score)
 
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                 "Oil entry updated successfully:\n")
