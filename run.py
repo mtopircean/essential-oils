@@ -23,15 +23,16 @@ SHEET = GSPREAD_CLIENT.open('EssentialOils')
 program_menu = ("1. Add a product to the database",
                 "2. List oils database",
                 "3. Search a product in the database",
-                "4. List patients database",
-                "5. Search patient in the database")
+                "4. Modify oil data",
+                "5. List patients database",
+                "6. Search patient in the database")
 
 
 def list_menu(menu_options):
     """
     Function set in order to display to the user a main menu option.
     It starts a while loop which runs until user selects an option.
-    Option is validated as an integer between 1 and 5 including,
+    Option is validated as an integer between 1 and 6 including,
     and validates the selection.
     Print messages are set to handle alll scenarios:
     selected option, wrong type of parameter selected.
@@ -45,13 +46,13 @@ def list_menu(menu_options):
                                 "\nWhat do you want to do? "
                                 "Add the number of your option "
                                 "in numeric format: \n")
-        if selected_option.isdigit() and 1 <= int(selected_option) <= 5:
+        if selected_option.isdigit() and 1 <= int(selected_option) <= 6:
             return selected_option
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "\nYou haven`t selected a valid option.\n")
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                  "Please select a value from 1 to 5 "
+                  "Please select a value from 1 to 6 "
                   "based on the options menu list.\n")
 
 
@@ -68,7 +69,7 @@ class Oils:
     are defined in order to set the main properties
     of this objects which are:
     it`s name, the ailment that it addresses,
-    the oil price, it if needs a difuser to apply it and
+    the oil price, it if needs a Diffuser to apply it and
     then a calculated score based on a basic calculation.
     """
 
@@ -80,7 +81,7 @@ class Oils:
         self.score = score
 
     def __str__(self):
-        return f"Oil name: {self.name}\nAilment: {self.ailment}\nPrice: {self.price}\nCan it be used with a difuser: {self.application}\nScore: {self.score}"
+        return f"Oil name: {self.name}\nAilment: {self.ailment}\nPrice: {self.price}\nCan it be used with a Diffuser: {self.application}\nScore: {self.score}"
 
 
 def add_oil():
@@ -121,9 +122,9 @@ def add_oil():
                 "\nThe oil already exists in the database.")
             ailment=oil["Ailment"]
             price=oil["Eur Price"]
-            application=oil["Difuser suitable"]
+            application=oil["Diffuser suitable"]
             score=oil["Score"]
-            print(colorama.Style.RESET_ALL + colorama.Fore.WHITE + "\n" +  f"Oil name: {name}\nAilment: {ailment}\nPrice: {price}\nCan it be used with a difuser: {application}\nScore: {score}")
+            print(colorama.Style.RESET_ALL + colorama.Fore.WHITE + "\n" +  f"Oil name: {name}\nAilment: {ailment}\nPrice: {price}\nCan it be used with a Diffuser: {application}\nScore: {score}")
             while True:
                 re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                             "\nDo you want to add another product to the database? "
@@ -175,7 +176,7 @@ def add_oil():
     while True:
         application = input(colorama.Style.RESET_ALL +
                             colorama.Fore.WHITE +
-                            "\nCan it be used with a difuser?(Yes/No): \n").strip()
+                            "\nCan it be used with a Diffuser?(Yes/No): \n").strip()
         if application.lower() == "yes" or application.lower() == "no":
             break
         else:
@@ -275,12 +276,12 @@ def list_oils():
     oils_table = []
     for oil in all_oils:
         oils_table.append([oil['Oil Name'], oil['Ailment'],
-                          oil['Eur Price'], oil['Difuser suitable'], oil['Score']])
+                          oil['Eur Price'], oil['Diffuser suitable'], oil['Score']])
 
     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
           "Here is a list of all your stored oils: \n")
     print(tabulate(oils_table, headers=[
-          "Oil Name", "Ailment", "Eur Price", "Difuser suitable", "Score"], tablefmt="grid"))
+          "Oil Name", "Ailment", "Eur Price", "Diffuser suitable", "Score"], tablefmt="grid"))
 
     main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                       "\nDo you want to exit to main menu? "
@@ -359,13 +360,13 @@ def find_store_oils():
             for oil in matching_oils:
                 search_table.append(
                     [oil['Oil Name'], oil['Ailment'],
-                     oil['Eur Price'], oil['Difuser suitable'],
+                     oil['Eur Price'], oil['Diffuser suitable'],
                      oil['Score']])
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                   "Here is your search result: \n")
             print(tabulate(search_table, headers=[
                 "Oil Name", "Ailment",
-                "Eur Price", "Difuser suitable", "Score"], tablefmt="grid"))
+                "Eur Price", "Diffuser suitable", "Score"], tablefmt="grid"))
 
             """
             Code allows user to save search under patient name.
@@ -420,7 +421,7 @@ def find_store_oils():
 
                 for oil in matching_oils:
                     oil_data = [sheet_name, oil['Oil Name'], oil['Ailment'],
-                                oil['Eur Price'], oil['Difuser suitable'], oil['Score']]
+                                oil['Eur Price'], oil['Diffuser suitable'], oil['Score']]
                     patients_sheet.append_row(oil_data)
                 print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                       "Your search was added to your search history.\n")
@@ -460,6 +461,79 @@ def find_store_oils():
                       "Your answer should be either 'Yes' or 'No'. "
                       "Please resubmit your answer.\n")
 
+def modify_oil():
+    """
+    Function to modify existing oil entry.
+    """
+
+    worksheet_id = "master"
+    worksheet = SHEET.worksheet(worksheet_id)
+    all_oils = worksheet.get_all_records()
+
+    oil_name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                     "Enter the name of the oil you want to modify: ").strip()
+    
+    existing_oil = None
+    for oil in all_oils:
+        if oil["Oil Name"].lower() == oil_name.lower():
+            existing_oil = oil
+            break
+
+    if existing_oil:
+        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+              "\nFollowing entry was found:\n")
+        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+              f"Oil name: {existing_oil['Oil Name']}\nAilment: {existing_oil['Ailment']}"
+              f"\nPrice: {existing_oil['Eur Price']}\nCan it be used with a diffuser: {existing_oil['Diffuser suitable']}"
+              f"\nScore: {existing_oil['Score']}\n")
+
+        ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                            "Enter the updated ailments the oil addresses: ").strip()
+        while True:
+            try:
+                price = float(input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                    "Enter the updated Euro price value: "))
+                break
+            except ValueError:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "You have not entered a numeric value. "
+                        "Please enter a valid numeric value.")
+        while True:
+            application = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                "Can it be used with a diffuser? (Yes/No): ").strip().lower()
+            if application == "yes" or application == "no":
+                break
+            else:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "Invalid input. Please enter either 'Yes' or 'No'.")
+        score = price / 10 * 0.30 + float(10 if application == "yes" else 0)
+
+        
+        existing_oil["Ailment"] = ailment
+        existing_oil["Eur Price"] = price
+        existing_oil["Diffuser suitable"] = application
+        existing_oil["Score"] = score
+
+        
+
+        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                "Oil entry updated successfully:\n")
+        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                f"Oil name: {existing_oil['Oil Name']}\nAilment: {existing_oil['Ailment']}"
+                f"\nPrice: {existing_oil['Eur Price']}\nCan it be used with a diffuser: {existing_oil['Diffuser suitable']}"
+                f"\nScore: {existing_oil['Score']}\n")
+    else:
+        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                "The oil was not found in the database.\n")
+
+    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nDo you want to return to the main menu? (Yes/No): ").strip()
+    if main_menu.lower() == "yes":
+        main()
+    else:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "Now exiting program!\n")
+        exit()
 
 def list_patients():
     """
@@ -482,13 +556,13 @@ def list_patients():
         patients_table.append(
             [patient['Patient Name'], patient['Oil Name'],
              patient['Ailment'], patient['Eur Price'],
-             patient['Difuser suitable'], patient['Score']])
+             patient['Diffuser suitable'], patient['Score']])
     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
           "Here is a list of all your stored patients: \n")
     print(tabulate(patients_table, headers=[
           "Patient Name", "Oil Name",
           "Ailment", "Eur Price",
-          "Difuser suitable", "Score"], tablefmt="grid"))
+          "Diffuser suitable", "Score"], tablefmt="grid"))
 
     """
     Returns to main menu.
@@ -563,12 +637,12 @@ def search_patient():
                 patients_table.append(
                     [patient['Patient Name'], patient['Oil Name'],
                      patient['Ailment'], patient['Eur Price'],
-                     patient['Difuser suitable'], patient['Score']])
+                     patient['Diffuser suitable'], patient['Score']])
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                   "Here is a list of entries for the patient searched: \n")
             print(tabulate(patients_table, headers=[
                 "Patient Name", "Oil Name", "Ailment",
-                "Eur Price", "Difuser suitable", "Score"], tablefmt="grid"))
+                "Eur Price", "Diffuser suitable", "Score"], tablefmt="grid"))
 
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -632,8 +706,10 @@ def main():
         elif selected_option == "3":
             find_store_oils()
         elif selected_option == "4":
-            list_patients()
+            modify_oil() 
         elif selected_option == "5":
+            list_patients()
+        elif selected_option == "6":
             search_patient()
         else:
             print(colorama.Style.BRIGHT +
