@@ -339,19 +339,15 @@ def find_store_oils():
                                 colorama.Fore.WHITE +
                                 "Input the name of the oil "
                                 "or the ailment you need to address: \n")
-        while True:
-            search_criteria.strip() == ""
+        if not search_criteria:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid option. "
-                  "Please make sure your field is not empty.")
-            search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                                    "Enter the name again and hit enter: ")
-        else:
-            break
+              "You have not entered a valid option. "
+              "Please make sure your field is not empty.")
+            continue
 
         matching_oils = []
         for oil in all_oils:
-            if 'Oil Name' in oil and search_criteria.lower() in oil['Oil Name'].lower():
+            if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():
                 matching_oils.append(oil)
             elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
                 matching_oils.append(oil)
