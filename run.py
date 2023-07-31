@@ -130,8 +130,8 @@ def add_oil():
                 re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                             "\nDo you want to add another product to the database? "
                             "Type Yes or No: \n")
-                while True:
-                    if re_run.lower() == "no":
+                if re_run.lower() == "no":
+                    while True:
                         main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                                         "\nDo you want to exit to main menu? "
                                         "Type Yes if you want to return to main. "
@@ -147,13 +147,13 @@ def add_oil():
                                 "You have not selected a valid option. "
                                 "Your answer should be either 'Yes' or 'No'. "
                                 "Please resubmit your answer.\n")
-                    elif re_run.lower() == "yes":
-                        add_oil()
-                    else:
-                        print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                            "You have not selected a valid option. "
-                            "Your answer should be either 'Yes' or 'No'. "
-                            "Please resubmit your answer.\n")
+                elif re_run.lower() == "yes":
+                    add_oil()
+                else:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "You have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
 
     ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                     "\nInput the ailments the oil addresses. "
