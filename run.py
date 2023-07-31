@@ -124,7 +124,7 @@ def add_oil():
             price=oil["Eur Price"]
             application=oil["Diffuser suitable"]
             score=oil["Score"]
-            print(colorama.Style.RESET_ALL + colorama.Fore.WHITE + "\n" +  f"Oil name: {name}\nAilment: {ailment}\nPrice: {price}\nCan it be used with a difuser: {application}\nScore: {score}")
+            print(colorama.Style.RESET_ALL + colorama.Fore.WHITE + "\n" +  f"Oil name: {name}\nAilment: {ailment}\nPrice: {price}\nCan it be used with a diffuser: {application}\nScore: {score}")
             while True:
                 re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                             "\nDo you want to add another product to the database? "
@@ -176,7 +176,7 @@ def add_oil():
     while True:
         application = input(colorama.Style.RESET_ALL +
                             colorama.Fore.WHITE +
-                            "\nCan it be used with a difuser?(Yes/No): \n").strip()
+                            "\nCan it be used with a Diffuser?(Yes/No): \n").strip()
         if application.lower() == "yes" or application.lower() == "no":
             break
         else:
@@ -230,6 +230,7 @@ def add_oil():
                   "You have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
+
 
 
 
