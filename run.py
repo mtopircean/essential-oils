@@ -117,7 +117,7 @@ def add_oil():
     all_oils = worksheet.get_all_records()
 
     for oil in all_oils:
-        if oil["Oil Name"].lower() == name:
+        if oil["Oil Name"].lower().strip() == name.lower().strip():
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                 "\nThe oil already exists in the database.")
             ailment=oil["Ailment"]
@@ -230,7 +230,6 @@ def add_oil():
                   "You have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
-
 
 
 
