@@ -570,22 +570,22 @@ def list_patients():
     """
     Returns to main menu.
     """
-
-    main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "\nDo you want to exit to main menu? "
-                      "Type Yes if you want to return to main. "
-                      "Otherwise type No to exit program: \n")
-    if main_menu.lower() == "yes":
-        main()
-    elif main_menu.lower() == "no":
-        print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "Now exiting program!")
-        exit()
-    else:
-        print(colorama.Fore.RED + colorama.Style.BRIGHT +
-              "You have not selected a valid option. "
-              "Your answer should be either 'Yes' or 'No'. "
-              "Please resubmit your answer.\n")
+    while True:
+        main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nDo you want to exit to main menu? "
+                        "Type Yes if you want to return to main. "
+                        "Otherwise type No to exit program: \n")
+        if main_menu.lower() == "yes":
+            main()
+        elif main_menu.lower() == "no":
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "Now exiting program!")
+            exit()
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "You have not selected a valid option. "
+                "Your answer should be either 'Yes' or 'No'. "
+                "Please resubmit your answer.\n")
 
 
 def search_patient():
@@ -619,19 +619,16 @@ def search_patient():
                                 "Second Name format. For example John Doe. "
                                 "Please check to make sure "
                                 "spelling is correct before hitting ENTER: \n")
-        while True:
-            search_criteria.strip() == ""
+        while search_criteria.strip() == "":
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not entered a valid option. "
                   "Please make sure your field is not empty.")
             search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                                     "Enter the name again and hit enter: ")
-        else:
-            break
 
         matching_patient = []
         for patient in all_patients:
-            if 'Patient Name' in patient and search_criteria.lower() in patient['Patient Name'].lower():
+            if 'Patient Name' in patient and search_criteria.lower().strip() in patient['Patient Name'].lower().strip():
                 matching_patient.append(patient)
 
         if matching_patient:
@@ -665,22 +662,22 @@ def search_patient():
         if new_search.lower() != "yes":
 
             """ Offers user the option to return to main menu"""
-
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "\nDo you want to exit to main menu? "
-                              "Type Yes if you want to return to main. "
-                              "Otherwise type No to exit program: \n")
-            if main_menu.lower() == "yes":
-                main()
-            elif main_menu.lower() == "no":
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!\n")
-                exit()
-            else:
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option. "
-                      "Your answer should be either 'Yes' or 'No'. "
-                      "Please resubmit your answer.\n")
+            while True:
+                main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                "\nDo you want to exit to main menu? "
+                                "Type Yes if you want to return to main. "
+                                "Otherwise type No to exit program: \n")
+                if main_menu.lower() == "yes":
+                    main()
+                elif main_menu.lower() == "no":
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "Now exiting program!\n")
+                    exit()
+                else:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "You have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
 
 
 def main():
