@@ -431,35 +431,40 @@ def find_store_oils():
                   "your search criteria. Please search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                            "Do you want to run a new search? Type Yes/No: \n")
-        while new_search.lower() not in ["yes", "no"]:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option. "
-                  "Your answer should be either 'Yes' or 'No'. "
-                  "Please resubmit your answer.\n")
-            new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                               "Do you want to run a new search? "
-                               "Type Yes/No: \n")
+        while True:
+            if new_search.lower() not in ["yes", "no"]:
+                print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                    "You have not selected a valid option. "
+                    "Your answer should be either 'Yes' or 'No'. "
+                    "Please resubmit your answer.\n")
+                new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                "Do you want to run a new search? "
+                                "Type Yes/No: \n")
+            else:
+                break
         """
         Standard functionality across the code
          to allow the user to return to the main menu.
         """
-        if new_search.lower() != "yes":
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "\nDo you want to exit to main menu? "
-                              "Type Yes if you want to return to main. "
-                              "Otherwise type No to exit program: \n")
-            if main_menu.lower() == "yes":
-                main()
-            elif main_menu.lower() == "no":
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!\n")
-                exit()
+        while True:
+            if new_search.lower() != "yes":
+                main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                "\nDo you want to exit to main menu? "
+                                "Type Yes if you want to return to main. "
+                                "Otherwise type No to exit program: \n")
+                if main_menu.lower() == "yes":
+                    main()
+                elif main_menu.lower() == "no":
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "Now exiting program!\n")
+                    exit()
+                else:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "You have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
             else:
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option. "
-                      "Your answer should be either 'Yes' or 'No'. "
-                      "Please resubmit your answer.\n")
-
+                break
 
 def modify_oil():
     """
