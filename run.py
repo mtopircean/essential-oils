@@ -470,20 +470,16 @@ def modify_oil():
     """
     Function to modify existing oil entry.
     """
-
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
-
     oil_name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                      "Enter the name of the oil you want to modify: ").strip()
-
     existing_oil = None
     for index, oil in enumerate(all_oils, start=2):
         if oil["Oil Name"].lower() == oil_name.lower():
             existing_oil = oil
             existing_oil["row"] = index
-
     if existing_oil:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
               "\nFollowing entry was found:\n")
@@ -491,7 +487,6 @@ def modify_oil():
               f"Oil name: {existing_oil['Oil Name']}\nAilment: {existing_oil['Ailment']}"
               f"\nPrice: {existing_oil['Eur Price']}\nCan it be used with a diffuser: {existing_oil['Diffuser suitable']}"
               f"\nScore: {existing_oil['Score']}\n")
-
         ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                         "Enter the updated ailments the oil addresses: ").strip()
         while True:
@@ -512,17 +507,14 @@ def modify_oil():
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "Invalid input. Please enter either 'Yes' or 'No'.")
         score = price / 10 * 0.30 + float(10 if application == "yes" else 0)
-
         existing_oil["Ailment"] = ailment
         existing_oil["Eur Price"] = price
         existing_oil["Diffuser suitable"] = application
         existing_oil["Score"] = score
-
         worksheet.update_cell(existing_oil["row"], 2, ailment)
         worksheet.update_cell(existing_oil["row"], 3, price)
         worksheet.update_cell(existing_oil["row"], 4, application)
         worksheet.update_cell(existing_oil["row"], 5, score)
-
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
               "Oil entry updated successfully:\n")
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -532,53 +524,28 @@ def modify_oil():
     else:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
               "The oil was not found in the database.\n")
-        new_search = input("Do you want to search for another oil?"
-                        "Type in Yes or No: \n")
-        if new_search.lower() == "yes":
+    
+    while True:
+        re_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nDo you want to modify another product. Type in Yes or No: ").strip()
+        if re_search.lower() == "yes":
             modify_oil()
-        elif main_menu.lower() == "no":
+        if re_search.lower() == "no":
+            while True:
                 main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                        "\nDo you want to exit to main menu? "
-                        "Type Yes if you want to return to main. "
-                        "Otherwise type No to exit program: \n")
+                                "\nIf you want to return to main menu, type in Yes. Otherwise, type No to exist program: ").strip()
                 if main_menu.lower() == "yes":
                     main()
                 elif main_menu.lower() == "no":
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
                         "Now exiting program!\n")
                     exit()
-
-                elif main_menu.lower() not in ["yes", "no"]:
+                else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
                                 "You have not selected a valid option. "
                                 "Your answer should be either 'Yes' or 'No'. "
                                 "Please resubmit your answer.\n")
-        else main_menu.lower() not in ["yes", "no"]:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                        "You have not selected a valid option. "
-                        "Your answer should be either 'Yes' or 'No'. "
-                        "Please resubmit your answer.\n")
-    while True:
-        main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                        "\nDo you want to exit to main menu? "
-                        "Type Yes if you want to return to main. "
-                        "Otherwise type No to exit program: \n")
-        if main_menu.lower() == "yes":
-            main()
-        elif main_menu.lower() == "no":
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "Now exiting program!\n")
-            exit()
 
-        elif main_menu.lower() not in ["yes", "no"]:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                        "You have not selected a valid option. "
-                        "Your answer should be either 'Yes' or 'No'. "
-                        "Please resubmit your answer.\n")
-        else:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "Now exiting program!\n")
-            exit()
 
 
 def list_patients():
