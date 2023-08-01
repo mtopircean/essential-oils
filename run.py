@@ -532,6 +532,32 @@ def modify_oil():
     else:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
               "The oil was not found in the database.\n")
+        new_search = input("Do you want to search for another oil?"
+                        "Type in Yes or No: \n")
+        if new_search.lower() == "yes":
+            modify_oil()
+        elif main_menu.lower() == "no":
+                main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nDo you want to exit to main menu? "
+                        "Type Yes if you want to return to main. "
+                        "Otherwise type No to exit program: \n")
+                if main_menu.lower() == "yes":
+                    main()
+                elif main_menu.lower() == "no":
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "Now exiting program!\n")
+                    exit()
+
+                elif main_menu.lower() not in ["yes", "no"]:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                                "You have not selected a valid option. "
+                                "Your answer should be either 'Yes' or 'No'. "
+                                "Please resubmit your answer.\n")
+        else main_menu.lower() not in ["yes", "no"]:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "You have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
     while True:
         main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                         "\nDo you want to exit to main menu? "
