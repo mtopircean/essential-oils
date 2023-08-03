@@ -32,10 +32,10 @@ def list_menu(menu_options):
     """
     Function set in order to display to the user a main menu option.
     It starts a while loop which runs until user selects an option.
-    Option is validated as an integer between 1 and 6 including,
-    and validates the selection.
+    Option is validated as an integer between 1 and 6,
+    including 6, and validates the selection.
     Print messages are set to handle alll scenarios:
-    selected option, wrong type of parameter selected.
+    selected option, wrong type of parameter selected, etc.
     """
 
     print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "\nOptions Menu:\n")
@@ -59,19 +59,19 @@ def list_menu(menu_options):
 
 class Oils:
     """
-    Creates a class related to our oil and sets it`s properties.
-    It uses 2 functions to:
-        - eo_catalogue: creates the object related
-        to our oils and sets it`s relevant properties
-        - str self: which defines in which way
-        the added poil is returned,
-        - as a string with each line one under the other
+    Creates a class related to our oils and sets it`s properties.
+    It uses 2 functions:
+    - eo_catalogue: creates the object related
+    to our oils and sets it`s relevant properties
+    - str self: which defines in which way
+    the added oil is returned, as a string,
+    with each line one under the other.
     There are a series of attributes that
     are defined in order to set the main properties
-    of this objects which are:
+    of this object, which are:
     it`s name, the ailment that it addresses,
-    the oil price, it if needs a Diffuser to apply it and
-    then a calculated score based on a basic calculation.
+    the oil price, if it needs a diffuser to apply it, and
+    then a calculated score based on a specific formula.
     """
 
     def eo_catalogue(self, name, ailment, price, application, score):
@@ -91,16 +91,18 @@ class Oils:
 
 def add_oil():
     """
-    Function with main functionality to add oils to the database.
+    It`s main functionality is to add oils to the database.
     This is done by:
-        - requesting through inputs to add the name,
-        ailment, diffuser application, price;
-        note, score is calculated automatically
-        - validates the data provided for application
-        (as yes or no, ignoring upper/lower) and for price
-        (number only with . as a separator)
+    - requesting through inputs to add the name,
+    ailment, diffuser application, price;
+    note, score is calculated automatically
+    - function validates if the oil exists or not,
+    and if it exists, recommends to use the modify_oil function
+    - validates the data provided for application
+    (as yes or no, ignoring upper/lower) and for price
+    (number only with . as a separator)
     Function allows to run a loop in order for user to keep
-    adding oils if he chooses through a simple yes or no input.
+    adding oils if he chooses, through a simple yes or no input.
     If user doesn`t want to add another product, the loop will
     trigger the option to return to main menu,
     with a yes or no selection.
@@ -109,16 +111,18 @@ def add_oil():
     """
 
     my_oil = Oils()
-    """
-    Section of code to related to input takes for
-    the different properties needed to be defined by the user.
-    """
+
     name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                  "Input the name of the oil: \n")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
+
+    """
+    Section dedicated to checks if oil already exists in database
+    or not.
+    """
 
     for oil in all_oils:
         if oil["Oil Name"].lower().strip() == name.lower().strip():
@@ -206,7 +210,7 @@ def add_oil():
                   "Please resubmit your answer.\n")
     score = price / 10 * 0.30 + float(10 if application == "yes" else 0)
     """
-    Adds the oil and updates the master sheet.
+    Adds the oil to database and updates the master sheet.
     It uses an outside function called update_oils_worksheet.
     """
 
@@ -218,10 +222,10 @@ def add_oil():
             my_oil.application, my_oil.score]
     update_oils_worksheet(data, "master")
     """
-    Loop created to add the user an option to keep adding oils
+    Loop created to give the user an option to keep adding oils
     before returning to main menu.
     It also does a basic validation of their choices,
-    limited to a yes or no option.
+    limiting user to a yes or no option.
     """
     while True:
         re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -257,13 +261,11 @@ def update_oils_worksheet(data, worksheet):
     Function created to update the sheet named master in
     the EssentialOils google sheet.
     Function:
-        - informs on updates being made to the sheet
-        - sets the area where the data is transfered to the master sheet,
-        always being the next line by reading it`s row length
-        and adding the data
-        to the next unocupied line
-        - offers confirmation that the update was completed
-
+    - informs on updates being made to the sheet
+    - sets the area where the data is transfered to the master sheet,
+    always being the next row, this is done by reading it`s row length
+    and adding the data to the next unocupied line
+    - offers confirmation that the update was completed
     """
     print(colorama.Style.RESET_ALL +
           colorama.Fore.WHITE + f"Updating {worksheet}.")
@@ -280,14 +282,13 @@ def list_oils():
     Function defined in order to pull the data from the master worksheet
     and return it into a table format for the user.
     Function:
-        - pulls the data using all_oils and appends it to
-        a new list called oils_table
-        - using tabulate it then prints the
-        result into a grid table format
+    - pulls the data using all_oils and appends it to
+    a new list called oils_table
+    - using tabulate it then prints the result into a grid table format
     As all functions, it then gives the user an option to jump to main menu.
 
     Note: Tabulate how to install and use
-    is using inspiration from: https://pypi.org/project/tabulate/.
+    is inspired from: https://pypi.org/project/tabulate/.
     """
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -332,23 +333,23 @@ def find_store_oils():
     """
     Function created to allow user to search over
     the database and retrieve an oil based on either a name or ailment.
-    It is designed so it allows even partial parts
-    of the words, so it gives flexibility and allows the user to limit
+    It is designed so it accepts partial parts
+    of the words, in order to give flexibility and allow the user to limit
     their mistakes to a minimum.
-    It also gives the option to store search
-    under a patient to offer the search history in a different function.
+    It also gives the option to store the search under a patient name
+    so it can then return the search history in search or list_patient
+    function.
     Function:
-        - retrieves stored data
-        - allows user to search by either name of ailment
-        - validates and returns a result if it exists,
-        else it prints that no record exists
-        - give the option to run a new search
-        - gives the option to create a patient record
-        of the search or not through a yes / no validation
-        - appends the data to an existing patient,
-        if patient already exists or creates a new one
-        - once user stops it`s search activity can always return to main menu
-
+    - retrieves stored data
+    - allows user to search by either name of ailment
+    - validates and returns a result if it exists,
+    else it prints that no record exists
+    - give the option to run a new search
+    - gives the option to create a patient record
+    of the search or not, through a yes / no validation
+    - appends the data to an existing patient,
+    if patient already exists or creates a new one
+    - once user stops it`s search activity can always return to main menu
     """
 
     worksheet_id = "master"
@@ -500,6 +501,15 @@ def find_store_oils():
 def modify_oil():
     """
     Function to modify existing oil entry.
+    It pull data from master sheet and identifies existing oil.
+    It then returns the values stored under the oil name in
+    order to give then the user an option to start changes in
+    a controled manner.
+    Then returns again the new result and updates master on the
+    specific line where the oil exists, by replacing the content
+    of it`s parameters.
+    If no oil is identified, user can run a new search or return
+    to main menu.
     """
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -546,6 +556,10 @@ def modify_oil():
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "Invalid input. Please enter either 'Yes' or 'No'.")
         score = price / 10 * 0.30 + float(10 if application == "yes" else 0)
+        """
+        Updates master document with the new oil parameters
+        """
+
         existing_oil["Ailment"] = ailment
         existing_oil["Eur Price"] = price
         existing_oil["Diffuser suitable"] = application
@@ -566,6 +580,10 @@ def modify_oil():
     else:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
               "The oil was not found in the database.\n")
+
+    """
+    Allows the user to run a new search or return to main menu
+    """
 
     while True:
         re_search = input(colorama.Style.RESET_ALL +
@@ -596,11 +614,12 @@ def modify_oil():
 
 def list_patients():
     """
-    Function created in order to allow user to list their patients database.
+    Function created in order to allow user to list the patients database.
     Function:
         - pulls all records
         - presents data in a table format using tabulate
     Offers again the option to exit to main menu.
+    As all functions validates data input to limit error.
     """
     worksheet_id = "patients_list"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -650,15 +669,15 @@ def search_patient():
     Functions allows the user to search for a patient in the database,
     in the patients_list sheet.
     Function:
-        - pulls the data in patients_list
-        - takes input from user(takes partial input,
-        partial name for example) and returns the result in a table format
-        - provides through print lines notifications of different actions
-        happening in the program
-        - allows the user to re-run new searches once one is complete
-        - validates input choices and limits the amount of errors
-        for simple decissions: yes or no
-    Provides as normal, the option to return to the main menu
+    - pulls the data in patients_list
+    - takes input from user(takes partial input,
+    partial name for example) and returns the result in a table format
+    - provides through print lines notifications of different actions
+    happening in the program
+    - allows the user to re-run new searches once one is complete
+    - validates input choices and limits the amount of errors
+    for simple decissions: yes or no
+    Provides as normal, the option to return to the main menu.
     """
     while True:
         worksheet_id = "patients_list"
@@ -747,8 +766,7 @@ def main():
     Uses an infinite loop to allow the program to run until terminated.
     Through selected_option it takes the input from user
     in order to identify and return the function the user
-    wants to acess
-
+    wants to acess.
     """
 
     while True:
@@ -778,7 +796,7 @@ def main():
 """
 Bellow code set in order to sensure the main functions runs
 not only when called inside a function, but also
-when the python script is run  python3 run.py.
+when the python script is run.
 Took inspiration from:https://realpython.com/if-name-main-python/
 """
 
