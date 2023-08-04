@@ -112,8 +112,14 @@ def add_oil():
 
     my_oil = Oils()
 
-    name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                 "Input the name of the oil: \n")
+    while True:
+        name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                    "Input the name of the oil: \n").strip()
+        if name:
+            break
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "You have not entered a valid name. Please provide a name for the oil. Please make sure you are not leaving the field empty.\n")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -175,13 +181,18 @@ def add_oil():
                           "You have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
-
-    ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                    "\nInput the ailments the oil addresses. "
-                    "We recommend a format in which, if multiple ailments, "
-                    "separate them by ',' and space. "
-                    "For example: headace, toothache. "
-                    "Please provide your input: \n")
+    while True:
+        ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                        "\nInput the ailments the oil addresses. "
+                        "We recommend a format in which, if multiple ailments, "
+                        "separate them by ',' and space. "
+                        "For example: headace, toothache. "
+                        "Please provide your input: \n").strip()
+        if ailment:
+            break
+        else:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                "You have not entered a valid name. Please provide a name for the oil. Please make sure you are not leaving the field empty.\n")
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
