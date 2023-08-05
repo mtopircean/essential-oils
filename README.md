@@ -13,6 +13,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
     * [IDE](#ide)
     * [Other](#other)
 * [Design](#design)
+    * [FlowChart](#FlowChart)
     * [Theme](#theme)
     * [Colour Selection](#colour-selection)
     * [Features](#features)
@@ -93,6 +94,12 @@ To clone the repository:
 Design is very basic and limited to Python/Heroku interfaces.
 There was a separation of data based on their pourpose and intention by using colorama.
 The use of tabulate and font styles was done in order to structure the data in a manner easy to read and understand.
+
+#### FlowChart
+FlowChart was established at the beginning of the project as it was an absolute requierment in order to ensure that all of the differnt features and interconnections between different functionalities where executed.
+It has supported in a few instances in identifying a lack of logic, or a deadend in a function.
+
+FLOWCHART PRESENT AT THE LINK BELLOW DUE TO IT`S LARGE SIZE AND COMPLEXITY:
 
 
 #### Theme
@@ -187,7 +194,34 @@ Patient list is separate by the actual name of the patient. This is done so it a
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/search-oil.gif)
 
+4. Modify oil data(modify_oil()):
+* Function added later in the development with the goal to allow the user to update the existing data on an already present entry in the product database.
+* It is applicable only to oils and does not allow updates on the patients database.
+* User is allowed to search in the database, if an entry is found data is returned to the user so we have reference it when the parameters will be entered with the new data. Limitation here relates to the fact that the user has to re-enter each parameter. Upgrade in the future will be to enter a numeric option related to a list including all of the parameters.
+* If the entry does not exist, user is asked if a new resubmit is needed and then the loop can be closed again with an exit program or return to main menu.
+* Function then identifies the entry in the external worksheet and updates that entry
+* Like the other functions, data validation is present here as well.
+* The open loops are in place in order to allow the user to move with ease through the function
 
+EXAMPLE OF FUNCTION RUNNING:
+![Alt text](/readme/videos/modify-oil.gif)
+
+5. List patients database(list_patients()):
+* Similar to the list_oils function, the list_patients function will return a list of all the patients existing in the patients_list sheet.
+* Data is returned in a table format by using tabulate
+* Open loop is existent also here in order to allow the user to return to main menu or terminate program
+* Data validation also present, where required
+
+EXAMPLE OF FUNCTION RUNNING:
+![Alt text](/readme/videos/list-patients.gif)
+
+6. Search patient in the database(search_patient())
+* Similar to the function allowing to search for a product, this function allows the user to search a patient in the database
+* Result is returned in table format using tabulate
+* User can input partialy the name of the patient and still be able to return the results containing it. This was choosen vs. a fixed and strict use of the exact name in order to allow more flexibility to the user and less room for error.
+
+EXAMPLE OF FUNCTION RUNNING:
+![Alt text](/readme/videos/search-patient.gif)
 
 ## Testing and Validation
 
@@ -236,6 +270,11 @@ It was highlighted for my previous project, for project 2 that this should be im
 
 b. If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
 ![Alt text](/readme/videos/google-sheet-broken-connection.gif)
+
+c. Due to size of screen in Heroku, when listing the patients database the score option moves to another row.
+![Alt text](/readme/images/patient-list.jpg)
+
+
 
 
 ## Credits
