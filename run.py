@@ -114,12 +114,14 @@ def add_oil():
 
     while True:
         name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                    "Input the name of the oil: \n").strip()
+                     "Input the name of the oil: \n").strip()
         if name:
             break
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "You have not entered a valid name. Please provide a name for the oil. Please make sure you are not leaving the field empty.\n")
+                  "You have not entered a valid name. "
+                  "Please provide a name for the oil. "
+                  "Please make sure you are not leaving the field empty.\n")
 
     worksheet_id = "master"
     worksheet = SHEET.worksheet(worksheet_id)
@@ -184,7 +186,8 @@ def add_oil():
     while True:
         ailment = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                         "\nInput the ailments the oil addresses. "
-                        "We recommend a format in which, if multiple ailments, "
+                        "We recommend a format in which, "
+                        "if multiple ailments, "
                         "separate them by ',' and space. "
                         "For example: headace, toothache. "
                         "Please provide your input: \n").strip()
@@ -192,7 +195,9 @@ def add_oil():
             break
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                "You have not entered a valid name. Please provide a name for the oil. Please make sure you are not leaving the field empty.\n")
+                  "You have not entered a valid name. "
+                  "Please provide a name for the oil. "
+                  "Please make sure you are not leaving the field empty.\n")
     while True:
         try:
             price = float(input(colorama.Style.RESET_ALL +
@@ -711,7 +716,8 @@ def search_patient():
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "You have not entered a valid option. "
                   "Please make sure your field is not empty.")
-            search_criteria = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+            search_criteria = input(colorama.Style.RESET_ALL +
+                                    colorama.Fore.WHITE +
                                     "Enter the name again and hit enter: ")
 
         matching_patient = []

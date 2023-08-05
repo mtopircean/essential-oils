@@ -118,6 +118,24 @@ z
 
 #### CI Linter
 
+Code was tested by using the CI Linter web application.
+No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code, I`ve decided to document them only at this moment.
+
+Linter test:
+![Alt text](/readme/images/linter.jpg)
+
+```python
+if 'Patient Name' in patient and search_criteria.lower().strip() in patient['Patient Name'].lower().strip():
+```
+
+```python
+elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
+```
+
+```python
+if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():
+```
+
 
 #### Python
 
