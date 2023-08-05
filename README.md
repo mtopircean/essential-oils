@@ -20,7 +20,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
 * [Testing and Validation](#testing-and-validation)
     * [CI Linter](#ci-linter)
     * [Spellcheck](#spellcheck)
-    * [Python](#javascript)
+    * [Python](#python)
     * [Local functionality tests](#local-functionality-tests)
     * [Fixed bugs](#fixed-bugs-and-current-errors)
 * [Credits](#credits)
@@ -30,7 +30,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
 
 ## Scope
 Essential oils application offers the user a simple Client Relationship Management and Product Management System.
-Application allows the user to enter/pull through a basic Python interface data into/from a Google Spraedsheet, update product data and maintain a search history database based on customer name.
+Application allows the user to enter/pull through a basic Python interface data into/from a Google Spreadsheet, update product data and maintain a search history database based on customer name.
 The true value of this application represents this exact functionality, the ability to store searches into a database, allocating them to a specific customer. This allows then the user to go back to their data and tailor their discussions in a way that maximizes the impact they can bring to address clients ailments.
 The ability to store the search as it happens is what it brings more value compared to using a simple spreadsheet.
 
@@ -47,7 +47,7 @@ Intention of the application is to allow the user to:
 - search through the database in order to pull a specific product by using the product name or ailment, in a way that does not restrict the user to use fixed and accurate names of the oil and ailment; user can search by part of the word, using upper or lower case
 - save the search under a patient name in order to be able to store the data in real time and be able to create a patient sheet that will later allow the user to take a very targeted approach with the customer
 - search the patient database, again, without major limitations, similar to the search system for product
-- access easiley a patients file
+- access easily a patients file
 
 FUTURE STATE:
 
@@ -84,7 +84,7 @@ To clone the repository:
 
 #### IDE:
 1. GitHub: to store the source code.
-2. GitPod: support to write majority of code, deploy via Heroku, and push data to store in GitHub. Gitpod was used also for debugging pourposes.
+2. GitPod: support to write majority of code, deploy via Heroku, and push data to store in GitHub. Gitpod was used also for debugging purposes.
 
 #### Other:
 1. HEROKU: to deploy application and act as the app interface
@@ -96,15 +96,15 @@ There was a separation of data based on their pourpose and intention by using co
 The use of tabulate and font styles was done in order to structure the data in a manner easy to read and understand.
 
 #### FlowChart
-FlowChart was established at the beginning of the project as it was an absolute requierment in order to ensure that all of the differnt features and interconnections between different functionalities where executed.
+FlowChart was established at the beginning of the project as it was an absolute requirement in order to ensure that all of the different features and interconnections between different functionalities where executed.
 It has supported in a few instances in identifying a lack of logic, or a deadend in a function.
 
 FLOWCHART PRESENT AT THE LINK BELLOW DUE TO IT`S LARGE SIZE AND COMPLEXITY:
 
 
 #### Theme
-Even with the interface limitations, I`ve tried to create and maintain a database theme by using tabulate in order to return the data in a more pleasent, easy to follow way.
-The use of different colors and font highlight was done to create structure and an ease in understanding and reading the different messages returned by the app.
+Even with the interface limitations, I`ve tried to create and maintain a database theme by using tabulate in order to return the data in a more pleasant, easy to follow way.
+The use of different colours and font highlight was done to create structure and an ease in understanding and reading the different messages returned by the app.
 ![Alt text](/readme/images/tabulate.jpg)
 
 
@@ -136,12 +136,12 @@ B. Overall view on features present in the application:
 
 * General:
 Document is structured around a main menu that allows the user to navigate through the different functionalities of the program. Throughout the program, the user, after finishing running a feature, is allowed to return again to main menu.
-This was thought in order to give the user a continous loop through the code and improve it`s experince by removing unnecesarry steps.
+This was thought in order to give the user a continuous loop through the code and improve it`s experience by removing unnecessary steps.
 
 User is provided guidance throughout the program in order to make sure it is easy to understand and use.
 
 * Maine menu:
-The main menu is the center point of the application connecting the various functions to a center of command.
+The main menu is the centre point of the application connecting the various functions to a centre of command.
 I`ve allowed for it to run automatically when the script is loaded, to again, limit the users effort in accessing the tools functionality. Functionality achieved through the use of the code bellow:
 
 ```python
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     main()
 ```
 
-I`ve also chose to separate it from the rest of the code visually by using CYAN color, dedicated only to this section.
+I`ve also chose to separate it from the rest of the code visually by using CYAN colour, dedicated only to this section.
 
 Main menu is providing access to 6 main function:
     1. Add a product to the database
@@ -160,13 +160,13 @@ Main menu is providing access to 6 main function:
     6. Search patient in the database
 
 1. Add a product to the database(add_oil()):
-* Main functionality of this feature is to allow the user to add a product to the database by inputing specific parameters.
+* Main functionality of this feature is to allow the user to add a product to the database by inputting specific parameters.
 It also calculates a specific score which is returned in the same database in order to offer a comparison between the different products.
-* If an oil already exists when trying to enter the product, the user will be prompted that the product is already present in the databse, and it will recommand to use the Modify oil data function if the choice will be to modify it`s parameters.
-* Throughouth the function, the user is left with choices to jump through different functionalities, in order to make sure there aren`t any closed loops.
+* If an oil already exists when trying to enter the product, the user will be prompted that the product is already present in the database, and it will recommend to use the Modify oil data function if the choice will be to modify it`s parameters.
+* Throughout the function, the user is left with choices to jump through different functionalities, in order to make sure there aren`t any closed loops.
 * Error checks are also present to ensure that parameters are entered, or that the correct parameters are entered, like for example:
     * No empty strings for oil name and ailment
-    * Yes and No where required, and no other optionl; implemented considering validation ignoring lower/upper case use
+    * Yes and No where required, and no other option; implemented considering validation ignoring lower/upper case use
     * Use of numeric only characters for price input
 * Function, through a link to update_oils_worksheet() function will connect and update the relevant google sheet
 
@@ -182,7 +182,7 @@ EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/list-oils.gif)
 
 3. Search a product in the database(find_store_oils()):
-* By using this function the user is able to search for a product in the database either by it`s product name or ailment. In order to improve user experience and allow the user to make less mistake, function will return a reasult even if the user will enter the name of the oil or ailment parially. For example, using "Laven" instead of "Lavender", will return a result for all the products including "Laven" in either the name or ailment.
+* By using this function the user is able to search for a product in the database either by it`s product name or ailment. In order to improve user experience and allow the user to make less mistake, function will return a result even if the user will enter the name of the oil or ailment partially. For example, using "Laven" instead of "Lavender", will return a result for all the products including "Laven" in either the name or ailment.
 * Search result is returned in a tabulate format.
 * An extra functionality of the feature, which brings true value to the application vs. using a standard excel/worksheet solution, is the ability to save the search under a patient name. The search is then saved under the patients name in a specific sheet so it can be returned in the other functions which will search and list the patients. This allows the user to take real time snapshots of their discussion with a patient and be able to access the data later and reference in a new contact with the client. 
 Patient list is separate by the actual name of the patient. This is done so it allows the user to better read the data with a clearer separation between patients:
@@ -218,7 +218,7 @@ EXAMPLE OF FUNCTION RUNNING:
 6. Search patient in the database(search_patient())
 * Similar to the function allowing to search for a product, this function allows the user to search a patient in the database
 * Result is returned in table format using tabulate
-* User can input partialy the name of the patient and still be able to return the results containing it. This was choosen vs. a fixed and strict use of the exact name in order to allow more flexibility to the user and less room for error.
+* User can input partially the name of the patient and still be able to return the results containing it. This was chosen vs. a fixed and strict use of the exact name in order to allow more flexibility to the user and less room for error.
 
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/search-patient.gif)
@@ -228,7 +228,7 @@ EXAMPLE OF FUNCTION RUNNING:
 #### Spellcheck
 
 Spellcheck was run using word spellcheck validation option.
-All found spelling errors where corrected in order to give the user a clean experience when ussing the tool.
+All found spelling errors where corrected in order to give the user a clean experience when using the tool.
 
 #### CI Linter
 
@@ -265,8 +265,8 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 * KNOWN ERRORS:
 
-a. Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
-It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunatley, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
+a. Although is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
+It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunately, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
 
 b. If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
 ![Alt text](/readme/videos/google-sheet-broken-connection.gif)
