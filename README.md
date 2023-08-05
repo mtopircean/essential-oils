@@ -25,7 +25,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
     * [Fixed bugs](#fixed-bugs-and-current-errors)
 * [Credits](#credits)
     * [Code Used](#code-used)
-    * [Other](#other)
+    * [Other Credits](#other-credits)
 * [About Author](#about-author)
 
 ## Scope
@@ -321,7 +321,7 @@ https://docs.gspread.org/en/latest/user-guide.html#finding-a-cell
 
 Generally, during development there was a lot of research done on different syntaxes to use, followed by a lot of trial and error.
 
-#### Other
+#### Other Credits
 
 Thanks to Graeme Taylor, my mentor for all his support during the development of the project.
 Thank you to the CI Tutor Team who supported in several instances by providing guidance on overcoming various challenges encountered during development:
