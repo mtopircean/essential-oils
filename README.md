@@ -263,6 +263,16 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 #### Fixed bugs and current errors
 
+* FIXED BUGS:
+Several issues where identified during development, but most common:
+- while loops creating a continous loop through a portion of the code
+- validation criteria was not initially considering empty strings
+- lower / upper case sensitivity was not consistently applied where needed
+- indentation errors where numerous but fixed
+- not in all situation, in case of validation issue, input was being retriggered
+- challenges in running the main function within other functions, challenges which have lead to the current solution
+- high difficulty in implementing the modify oil function around updates to specific fields in google sheet
+
 * KNOWN ERRORS:
 
 a. Although is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
@@ -274,17 +284,52 @@ b. If a link to the google sheet is broken, program will break. I`ve tested this
 c. Due to size of screen in Heroku, when listing the patients database the score option moves to another row.
 ![Alt text](/readme/images/patient-list.jpg)
 
-
-
-
 ## Credits
 #### Code Used:
+* Took inspiration from LoveSandwiches for the code bellow:
 
+```python
+import gspread
+from google.oauth2.service_account import Credentials
+
+import colorama
+from tabulate import tabulate
+
+"""
+General setup information done in accordance to
+LoveSandwiches project and it`s instructions.
+"""
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('EssentialOils')
+```
+
+* Took inspiration from here in using tabulate: https://pypi.org/project/tabulate/
+
+* Thanks to Joshua in CI Tutor team for guidance on how to update a spreadsheet by allowing to identify an elements position:
+https://docs.gspread.org/en/latest/user-guide.html#finding-a-cell
+
+* Took inspiration in different validation methods from this link(ex. while not in):https://tutorial.eyehunts.com/python/while-loop-yes-or-no-python-example-code/
+
+Generally, during development there was a lot of research done on different syntaxes to use, followed by a lot of trial and error.
 
 #### Other
 
 Thanks to Graeme Taylor, my mentor for all his support during the development of the project.
-Thank you to the CI Tutor Team who supported in several instances by providing guidance on overcoming various challenges encountered during development.
+Thank you to the CI Tutor Team who supported in several instances by providing guidance on overcoming various challenges encountered during development:
+
+* Thanks to Jason also for guidance on how to format the code in order for meet the length criteria
+* Thanks to Joshua in CI Tutor team for guidance on how to update a spreadsheet by allowing to identify an elements position:
+https://docs.gspread.org/en/latest/user-guide.html#finding-a-cell
+* If I`m missing anyone, I`m not ungrateful, just suffer from bad memory :)
 
 
 ## About Author
