@@ -34,7 +34,7 @@ def list_menu(menu_options):
     It starts a while loop which runs until user selects an option.
     Option is validated as an integer between 1 and 6,
     including 6, and validates the selection.
-    Print messages are set to handle alll scenarios:
+    Print messages are set to handle all scenarios:
     selected option, wrong type of parameter selected, etc.
     """
 
@@ -189,7 +189,7 @@ def add_oil():
                         "We recommend a format in which, "
                         "if multiple ailments, "
                         "separate them by ',' and space. "
-                        "For example: headace, toothache. "
+                        "For example: headache, toothache. "
                         "Please provide your input: \n").strip()
         if ailment:
             break
@@ -278,9 +278,9 @@ def update_oils_worksheet(data, worksheet):
     the EssentialOils google sheet.
     Function:
     - informs on updates being made to the sheet
-    - sets the area where the data is transfered to the master sheet,
+    - sets the area where the data is transferred to the master sheet,
     always being the next row, this is done by reading it`s row length
-    and adding the data to the next unocupied line
+    and adding the data to the next unoccupied line
     - offers confirmation that the update was completed
     """
     print(colorama.Style.RESET_ALL +
@@ -520,7 +520,7 @@ def modify_oil():
     It pull data from master sheet and identifies existing oil.
     It then returns the values stored under the oil name in
     order to give then the user an option to start changes in
-    a controled manner.
+    a controlled manner.
     Then returns again the new result and updates master on the
     specific line where the oil exists, by replacing the content
     of it`s parameters.
@@ -692,7 +692,7 @@ def search_patient():
     happening in the program
     - allows the user to re-run new searches once one is complete
     - validates input choices and limits the amount of errors
-    for simple decissions: yes or no
+    for simple decisions: yes or no
     Provides as normal, the option to return to the main menu.
     """
     while True:
@@ -783,7 +783,7 @@ def main():
     Uses an infinite loop to allow the program to run until terminated.
     Through selected_option it takes the input from user
     in order to identify and return the function the user
-    wants to acess.
+    wants to access.
     """
 
     while True:
@@ -811,10 +811,10 @@ def main():
 
 
 """
-Bellow code set in order to sensure the main functions runs
+Bellow code set in order to ensure the main functions runs
 not only when called inside a function, but also
 when the python script is run.
-Took inspiration from:https://realpython.com/if-name-main-python/
+Took inspiration from: https://realpython.com/if-name-main-python/
 """
 
 if __name__ == "__main__":
