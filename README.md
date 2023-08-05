@@ -166,6 +166,12 @@ It also calculates a specific score which is returned in the same database in or
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/add-oil-function.gif)
 
+2. List oils database:
+Functionality relates to the option of a user to list all of the oils present in the database.
+By using tabulate, user is able to view the information in a manner easier to read and understand.
+Similar to the rest of the functions, in order to allow an open loop when running the function, user can then return to main menu.
+![Alt text](/readme/videos/list-oils.gif)
+
 ## Testing and Validation
 
 #### Spellcheck
