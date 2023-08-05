@@ -110,23 +110,61 @@ The use of different colors and font highlight was done to create structure and 
 
 #### Features
 
-* External Features Implemented
+A. External Features Implemented:
 
-** Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easiley read and understand data.
+-  Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easiley read and understand data.
 ![Alt text](/readme/images/tabulate.jpg)
 
-** Colorama was used in highlighting key messages on the screen:
+-  Colorama was used in highlighting key messages on the screen:
     *** Errors by using red
     *** Cyan for highlighting the menu
     *** White for standard information
 ![Alt text](/readme/images/color-scheme.jpg)
 
-** Connection to google sheet created in order to pull and push data to the main database by accessing 2 sheets, "master" and "patients_list"
+- Connection to google sheet created in order to pull and push data to the main database by accessing 2 sheets, "master" and "patients_list"
 ![Alt text](/readme/images/google-sheet.jpg)
 
 
-*Overall view on features present in the application
+B. Overall view on features present in the application:
 
+* General:
+Document is structured around a main menu that allows the user to navigate through the different functionalities of the program. Throughout the program, the user, after finishing running a feature, is allowed to return again to main menu.
+This was thought in order to give the user a continous loop through the code and improve it`s experince by removing unnecesarry steps.
+
+User is provided guidance throughout the program in order to make sure it is easy to understand and use.
+
+* Maine menu:
+The main menu is the center point of the application connecting the various functions to a center of command.
+I`ve allowed for it to run automatically when the script is loaded, to again, limit the users effort in accessing the tools functionality. Functionality achieved through the use of the code bellow:
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+I`ve also chose to separate it from the rest of the code visually by using CYAN color, dedicated only to this section.
+
+Main menu is providing access to 6 main function:
+    1. Add a product to the database
+    2. List oils database
+    3. Search a product in the database
+    4. Modify oil data
+    5. List patients database
+    6. Search patient in the database
+
+1. Add a product to the database(add_oil()):
+* Main functionality of this feature is to allow the user to add a product to the database by inputing specific parameters.
+It also calculates a specific score which is returned in the same database in order to offer a comparison between the different products.
+* If an oil already exists when trying to enter the product, the user will be prompted that the product is already present in the databse, and it will recommand to use the Modify oil data function if the choice will be to modify it`s parameters.
+* Throughouth the function, the user is left with choices to jump through different functionalities, in order to make sure there aren`t any closed loops.
+* Error checks are also present to ensure that parameters are entered, or that the correct parameters are entered, like for example:
+    * No empty strings for oil name and ailment
+    * Yes and No where required, and no other optionl; implemented considering validation ignoring lower/upper case use
+    * Use of numeric only characters for price input
+* Function, through a link to update_oils_worksheet() function will connect and update the relevant google sheet
+
+EXAMPLE OF FUNCTION RUNNING:
+![Alt text](/readme/videos/add-oil-function.gif)
 
 ## Testing and Validation
 
@@ -170,10 +208,10 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 * KNOWN ERRORS:
 
-- Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
+a. Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
 It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunatley, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
 
-- If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
+b. If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
 ![Alt text](/readme/videos/google-sheet-broken-connection.gif)
 
 
