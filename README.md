@@ -166,11 +166,28 @@ It also calculates a specific score which is returned in the same database in or
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/add-oil-function.gif)
 
-2. List oils database:
-Functionality relates to the option of a user to list all of the oils present in the database.
-By using tabulate, user is able to view the information in a manner easier to read and understand.
-Similar to the rest of the functions, in order to allow an open loop when running the function, user can then return to main menu.
+2. List oils database(list_oils()):
+* Functionality relates to the option of a user to list all of the oils present in the database.
+* By using tabulate, user is able to view the information in a manner easier to read and understand.
+* Similar to the rest of the functions, in order to allow an open loop when running the function, user can then return to main menu.
+
+EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/list-oils.gif)
+
+3. Search a product in the database(find_store_oils()):
+* By using this function the user is able to search for a product in the database either by it`s product name or ailment. In order to improve user experience and allow the user to make less mistake, function will return a reasult even if the user will enter the name of the oil or ailment parially. For example, using "Laven" instead of "Lavender", will return a result for all the products including "Laven" in either the name or ailment.
+* Search result is returned in a tabulate format.
+* An extra functionality of the feature, which brings true value to the application vs. using a standard excel/worksheet solution, is the ability to save the search under a patient name. The search is then saved under the patients name in a specific sheet so it can be returned in the other functions which will search and list the patients. This allows the user to take real time snapshots of their discussion with a patient and be able to access the data later and reference in a new contact with the client. 
+Patient list is separate by the actual name of the patient. This is done so it allows the user to better read the data with a clearer separation between patients:
+![Alt text](/readme/images/patient-list.jpg)
+
+* Similar to the other functions, checks are in place to validate the data entered.
+* Similar to other functions, an open loop exists so that the user can return to the main menu.
+
+EXAMPLE OF FUNCTION RUNNING:
+![Alt text](/readme/videos/search-oil.gif)
+
+
 
 ## Testing and Validation
 
