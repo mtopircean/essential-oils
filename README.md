@@ -55,7 +55,7 @@ It should also offer the user the ability to have more flexibility in what they 
 For patients listing, it will include more details on when the search has taken place and allow to store users personal data as the discussions/searches happen, data like date of birth, gender, contact details.
 
 ## Deployment and Local Development
-Deployment of the website was done using HEROKU, and can be accessed here[ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/)
+Deployment of the website was done using HEROKU, and can be accessed here [ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/)
 The steps in deployment where taken following the example of LoveSandwiches CI Project.
 
 #### How to Fork
@@ -103,18 +103,25 @@ z
 
 
 #### Colour Selection
- - Red: alert
- - Cyan: Menu
- - White: for everything else in order to add a contrast to HEROKU background
+- Red: alert
+- Cyan: Menu
+- White: for everything else in order to add a contrast to HEROKU background
 ![Alt text](/readme/images/color-scheme.jpg)
 
 
 #### Features
 
+**External Features Implemented**
+
+**Overall view on features present in the application**
+
 
 ## Testing and Validation
 
 #### Spellcheck
+
+Spellcheck was run using word spellcheck validation option.
+All found spelling errors where corrected in order to give the user a clean experience when ussing the tool.
 
 #### CI Linter
 
@@ -122,6 +129,7 @@ Code was tested by using the CI Linter web application.
 No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code, I`ve decided to document them only at this moment.
 
 Linter test:
+
 ![Alt text](/readme/images/linter.jpg)
 
 ```python
@@ -139,11 +147,21 @@ if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lowe
 
 #### Python
 
+I`ve used  the Python debugging tool available in GitPod to test my code in a high number of instances.
+The use of print statements where also consistent across the development stage, and still present in order to prompt the user on different stages of the program instance, and also to validate correct code execution.
+
 
 #### Local functionality tests
 Link to full local functionality test: [TESTING.MD](https://github.com/mtopircean/essential-oils/blob/main/TESTING.md)
 
 #### Fixed bugs and current errors
+
+**KNOWN ERRORS:**
+
+Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
+It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunatley, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
+
+
 
 
 ## Credits
@@ -151,6 +169,9 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 
 #### Other
+
+Thanks to Graeme Taylor, my mentor for all his support during the development of the project.
+Thank you to the CI Tutor Team who supported in several instances by providing guidance on overcoming various challenges encountered during development.
 
 
 ## About Author
