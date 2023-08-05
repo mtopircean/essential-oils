@@ -174,7 +174,7 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunatley, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
 
 - If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
-![Alt text](/readme/images/videos/google-sheet-broken-connection.gif)
+![Alt text](/readme/videos/google-sheet-broken-connection.gif)
 
 
 ## Credits
