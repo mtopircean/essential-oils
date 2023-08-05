@@ -8,7 +8,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
 * [Deployment](#deployment-and-local-development)
     * [How to Fork](#how-to-fork)
     * [How to Clone](#how-to-clone)
-* [Technologies](#technologies)
+* [Technologies used](#technologies-used)
     * [Programming Languages](#programming-languages)
     * [IDE](#ide)
     * [Other](#other)
@@ -76,7 +76,7 @@ To clone the repository:
 5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
 
 
-## Technologies
+## Technologies Used
 
 #### Programming Languages:
 1. Python
