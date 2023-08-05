@@ -99,7 +99,6 @@ The use of tabulate and font styles was done in order to structure the data in a
 Even with the interface limitations, I`ve tried to create and maintain a database theme by using tabulate in order to return the data in a more pleasent, easy to follow way.
 The use of different colors and font highlight was done to create structure and an ease in understanding and reading the different messages returned by the app.
 ![Alt text](/readme/images/tabulate.jpg)
-z
 
 
 #### Colour Selection
@@ -111,9 +110,22 @@ z
 
 #### Features
 
-**External Features Implemented**
+* External Features Implemented
 
-**Overall view on features present in the application**
+** Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easiley read and understand data.
+![Alt text](/readme/images/tabulate.jpg)
+
+** Colorama was used in highlighting key messages on the screen:
+    *** Errors by using red
+    *** Cyan for highlighting the menu
+    *** White for standard information
+![Alt text](/readme/images/color-scheme.jpg)
+
+** Connection to google sheet created in order to pull and push data to the main database by accessing 2 sheets, "master" and "patients_list"
+![Alt text](/readme/images/google-sheet.jpg)
+
+
+*Overall view on features present in the application
 
 
 ## Testing and Validation
@@ -156,12 +168,13 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 #### Fixed bugs and current errors
 
-**KNOWN ERRORS:**
+* KNOWN ERRORS:
 
-Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
+- Althoug is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
 It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunatley, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
 
-
+- If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
+![Alt text](/readme/images/videos/google-sheet-broken-connection.gif)
 
 
 ## Credits
