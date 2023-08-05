@@ -329,7 +329,7 @@ Thank you to the CI Tutor Team who supported in several instances by providing g
 * Thanks to Jason also for guidance on how to format the code in order for meet the length criteria
 * Thanks to Joshua in CI Tutor team for guidance on how to update a spreadsheet by allowing to identify an elements position:
 https://docs.gspread.org/en/latest/user-guide.html#finding-a-cell
-* If I`m missing anyone, I`m not ungrateful, just suffer from bad memory :)
+* If I`m missing anyone, I am not ungrateful, just suffer from bad memory :)
 
 
 ## About Author
