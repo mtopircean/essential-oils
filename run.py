@@ -470,7 +470,7 @@ def find_store_oils():
                                 oil['Score']]
                     patients_sheet.append_row(oil_data)
                 print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "Your search was added to your search history.\n")
+                      "/nYour search was added to your search history.\n")
 
         else:
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -747,7 +747,7 @@ def search_patient():
 
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "Your search hasn`t returned any result. "
+                  "\nYour search hasn`t returned any result. "
                   "Please check that the name is spelled "
                   "correctly and search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -765,21 +765,21 @@ def search_patient():
             """ Offers user the option to return to main menu"""
             while True:
                 main_menu = input(colorama.Style.RESET_ALL +
-                                  colorama.Fore.WHITE +
-                                  "\nDo you want to exit to main menu? "
-                                  "Type Yes if you want to return to main. "
-                                  "Otherwise type No to exit program: \n")
+                                colorama.Fore.WHITE +
+                                "\nDo you want to exit to main menu? "
+                                "Type Yes if you want to return to main. "
+                                "Otherwise type No to exit program: \n")
                 if main_menu.lower() == "yes":
                     main()
                 elif main_menu.lower() == "no":
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "\nNow exiting program!\n")
+                        "\nNow exiting program!\n")
                     exit()
                 else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "\nYou have not selected a valid option. "
-                          "Your answer should be either 'Yes' or 'No'. "
-                          "Please resubmit your answer.\n")
+                        "\nYou have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
 
 
 def main():
