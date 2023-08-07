@@ -1,7 +1,7 @@
 | Test number |	Area Tested |	Main inpacted function |	Test Performed |	Steps to Test |	Result |	Pass/No-Pass |	Corrective Action |
-| --- |	--- | --- | ---           | ---           | ---           | --- | --- |
+| --- |	--- | --- | --- | --- | --- | --- | --- |
 | 1 |	Script load |	main() |	Open Options Menu when script loads |	Click Run Program in Heroku opens the Options Menu |	Menu opens listing the correct option s in the correct colour format |	Pass |	None |
-| 2 |	Main Menu |	list_menu() |	Run the list_menu function with valid inputs (1, 2, 3, 4, 5, 6)           |	Pass all 6 options inputted one by one           |	Each options allows the user to access the relevant function at the correct step in the function           |	Pass |	None |
+| 2 |	Main Menu |	list_menu() |	Run the list_menu function with valid inputs (1, 2, 3, 4, 5, 6) |	Pass all 6 options inputted one by one |	Each options allows the user to access the relevant function at the correct step in the function |	Pass |	None |
 | 3 |	Main Menu |	list_menu() |	Run the list_menu function with an invalid input (e.g., "abc!/#" empty string) |	Run the list_menu function with an invalid input ("abc!/#", empty string) |	Program returns the relevant error message that an invalid input was added |	Pass |	None |
 | 4 |	Main Menu |	list_menu() |	Run the list_menu function with an out-of-range input (e.g., 0, 7) |	Run the list_menu function with out-of-range input (0, 7) |	Program returns the relevant error message that an invalid input was added |	Pass |	None |
 | 5 |	Adding an Oil |	add_oil() |	Run the add_oil function with valid input and with an existing oil in the database |	Run the add_oil function with an existing oil name from the database |	Warning message returned with a prompt that the oil already exists. User is suggested to use modify_oil function to change oil`s parameters. It is then given the option to choose to add or not another oil to the database. |	Pass |	None |
