@@ -98,7 +98,7 @@ The use of tabulate and font styles was done in order to structure the data in a
 #### FlowChart
 FlowChart was established at the beginning of the project as it was an absolute requirement in order to ensure that all of the different features and interconnections between different functionalities where executed.
 It has supported in a few instances in identifying a lack of logic, or a deadend in a function.
-![Alt text](/readme/images/flow-diagram.jpg)
+![Alt text](/readme/images/flow%20-diagram.jpg)
 
 [FLOWCHART PRESENT ALSO AT THIS LINK DUE TO IT`S LARGE SIZE AND COMPLEXITY:](https://github.com/mtopircean/essential-oils/blob/main/readme/images/flow%20-diagram.jpg)
 
