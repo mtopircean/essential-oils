@@ -119,7 +119,7 @@ def add_oil():
             break
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid name. "
+                  "\nYou have not entered a valid name. "
                   "Please provide a name for the oil. "
                   "Please make sure you are not leaving the field empty.\n")
 
@@ -168,11 +168,11 @@ def add_oil():
                             main()
                         elif main_menu.lower() == "no":
                             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                                  "Now exiting program!\n")
+                                  "\nNow exiting program!\n")
                             exit()
                         else:
                             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                                  "You have not selected a valid option. "
+                                  "\nYou have not selected a valid option. "
                                   "Your answer should "
                                   "be either 'Yes' or 'No'. "
                                   "Please resubmit your answer.\n")
@@ -180,7 +180,7 @@ def add_oil():
                     add_oil()
                 else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. "
+                          "\nYou have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
     while True:
@@ -195,7 +195,7 @@ def add_oil():
             break
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid name. "
+                  "\nYou have not entered a valid name. "
                   "Please provide a name for the oil. "
                   "Please make sure you are not leaving the field empty.\n")
     while True:
@@ -248,26 +248,28 @@ def add_oil():
                        "Do you want to add another product to the database? "
                        "Type Yes or No: \n")
         if re_run.lower() == "no":
-            main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                              "\nDo you want to exit to main menu? "
-                              "Type Yes if you want to return to main. "
-                              "Otherwise type No to exit program: \n")
-            if main_menu.lower() == "yes":
-                main()
-            elif main_menu.lower() == "no":
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "Now exiting program!\n")
-                exit()
-            else:
-                print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option. "
-                      "Your answer should be either 'Yes' or 'No'. "
-                      "Please resubmit your answer.\n")
+            while True:
+                main_menu = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                                "\nDo you want to exit to main menu? "
+                                "Type Yes if you want to return to main. "
+                                "Otherwise type No to exit program: \n")
+                if main_menu.lower() == "yes":
+                    main()
+                elif main_menu.lower() == "no":
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "\nNow exiting program!\n")
+                    exit()
+                else:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                        "\nYou have not selected a valid option. "
+                        "Your answer should be either 'Yes' or 'No'. "
+                        "Please resubmit your answer.\n")
+                    continue
         elif re_run.lower() == "yes":
             add_oil()
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option. "
+                  "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
 
@@ -336,11 +338,11 @@ def list_oils():
             main()
         elif main_menu.lower() == "no":
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "Now exiting program!\n")
+                  "\nNow exiting program!\n")
             exit()
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option. "
+                  "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
 
@@ -383,8 +385,8 @@ def find_store_oils():
                                 "or the ailment you need to address: \n")
         if not search_criteria:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid option. "
-                  "Please make sure your field is not empty.")
+                  "\nYou have not entered a valid option. "
+                  "Please make sure your field is not empty.\n")
             continue
 
         matching_oils = []
@@ -427,7 +429,7 @@ def find_store_oils():
 
                 if add_patient not in ["yes", "no"]:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. "
+                          "\nYou have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
 
@@ -479,7 +481,7 @@ def find_store_oils():
         while True:
             if new_search.lower() not in ["yes", "no"]:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not selected a valid option. "
+                      "\nYou have not selected a valid option. "
                       "Your answer should be either 'Yes' or 'No'. "
                       "Please resubmit your answer.\n")
                 new_search = input(colorama.Style.RESET_ALL +
@@ -503,11 +505,11 @@ def find_store_oils():
                     main()
                 elif main_menu.lower() == "no":
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "Now exiting program!\n")
+                          "\nNow exiting program!\n")
                     exit()
                 else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. "
+                          "\nYou have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
             else:
@@ -559,8 +561,8 @@ def modify_oil():
                 break
             except ValueError:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                      "You have not entered a numeric value. "
-                      "Please enter a valid numeric value.")
+                      "\nYou have not entered a numeric value. "
+                      "Please enter a valid numeric value.\n")
         while True:
             application = input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
@@ -595,7 +597,8 @@ def modify_oil():
                f"\nScore: {existing_oil['Score']}\n"))
     else:
         print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-              "The oil was not found in the database.\n")
+              "The oil was not found in the database. "
+              "Ensure that you have typed the full correct name.\n")
 
     """
     Allows the user to run a new search or return to main menu
@@ -608,25 +611,29 @@ def modify_oil():
                           "Type in Yes or No: ").strip()
         if re_search.lower() == "yes":
             modify_oil()
-        if re_search.lower() == "no":
+        elif re_search.lower() == "no":
             while True:
                 main_menu = input(colorama.Style.RESET_ALL +
                                   colorama.Fore.WHITE +
                                   "\nIf you want to return to main menu, "
                                   "type in Yes. Otherwise, "
-                                  "type No to exist program: ").strip()
+                                  "type No to exit program: ").strip()
                 if main_menu.lower() == "yes":
                     main()
                 elif main_menu.lower() == "no":
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "Now exiting program!\n")
+                          "\nNow exiting program!\n")
                     exit()
                 else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. "
+                          "\nYou have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
-
+        else:
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                          "\nYou have not selected a valid option. "
+                          "Your answer should be either 'Yes' or 'No'. "
+                          "Please resubmit your answer.\n")
 
 def list_patients():
     """
@@ -671,11 +678,11 @@ def list_patients():
         elif main_menu.lower() == "no":
             print(colorama.Fore.RED +
                   colorama.Style.BRIGHT +
-                  "Now exiting program!")
+                  "\nNow exiting program!")
             exit()
         else:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option. "
+                  "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
 
@@ -714,8 +721,8 @@ def search_patient():
                                 "spelling is correct before hitting ENTER: \n")
         while search_criteria.strip() == "":
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not entered a valid option. "
-                  "Please make sure your field is not empty.")
+                  "\nYou have not entered a valid option. "
+                  "Please make sure your field is not empty.\n")
             search_criteria = input(colorama.Style.RESET_ALL +
                                     colorama.Fore.WHITE +
                                     "Enter the name again and hit enter: ")
@@ -747,7 +754,7 @@ def search_patient():
                            "Do you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "You have not selected a valid option. "
+                  "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
             new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
@@ -766,11 +773,11 @@ def search_patient():
                     main()
                 elif main_menu.lower() == "no":
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "Now exiting program!\n")
+                          "\nNow exiting program!\n")
                     exit()
                 else:
                     print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "You have not selected a valid option. "
+                          "\nYou have not selected a valid option. "
                           "Your answer should be either 'Yes' or 'No'. "
                           "Please resubmit your answer.\n")
 
