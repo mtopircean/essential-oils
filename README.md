@@ -22,7 +22,7 @@ EssentialOils was born out of my wife`s necessity for a CRM - Client Relationshi
     * [Spellcheck](#spellcheck)
     * [Python](#python)
     * [Local functionality tests](#local-functionality-tests)
-    * [Fixed bugs](#fixed-bugs-and-current-errors)
+    * [Fixed bugs and known errors](#fixed-bugs-and-current-errors)
 * [Credits](#credits)
     * [Code Used](#code-used)
     * [Other Credits](#other-credits)
