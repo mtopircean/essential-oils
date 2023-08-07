@@ -114,7 +114,7 @@ def add_oil():
 
     while True:
         name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                     "Input the name of the oil: \n").strip()
+                     "\nInput the name of the oil: \n").strip()
         if name:
             break
         else:
@@ -245,7 +245,7 @@ def add_oil():
     """
     while True:
         re_run = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                       "Do you want to add another product to the database? "
+                       "\nDo you want to add another product to the database? "
                        "Type Yes or No: \n")
         if re_run.lower() == "no":
             while True:
@@ -381,7 +381,7 @@ def find_store_oils():
     while True:
         search_criteria = input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
-                                "Input the name of the oil "
+                                "\nInput the name of the oil "
                                 "or the ailment you need to address: \n")
         if not search_criteria:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -423,7 +423,7 @@ def find_store_oils():
             while add_patient not in ["yes", "no"]:
                 add_patient = input(colorama.Style.RESET_ALL +
                                     colorama.Fore.WHITE +
-                                    "Do you want to save your search "
+                                    "\nDo you want to save your search "
                                     "connected to a patient name? "
                                     "Type Yes/No: \n").lower()
 
@@ -477,7 +477,7 @@ def find_store_oils():
                   "We couldn`t find any result matching "
                   "your search criteria. Please search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                           "Do you want to run a new search? Type Yes/No: \n")
+                           "\nDo you want to run a new search? Type Yes/No: \n")
         while True:
             if new_search.lower() not in ["yes", "no"]:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -486,7 +486,7 @@ def find_store_oils():
                       "Please resubmit your answer.\n")
                 new_search = input(colorama.Style.RESET_ALL +
                                    colorama.Fore.WHITE +
-                                   "Do you want to run a new search? "
+                                   "\nDo you want to run a new search? "
                                    "Type Yes/No: \n")
             else:
                 break
@@ -533,7 +533,7 @@ def modify_oil():
     worksheet = SHEET.worksheet(worksheet_id)
     all_oils = worksheet.get_all_records()
     oil_name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                     "Enter the name of the oil you want to modify: ").strip()
+                     "\nEnter the name of the oil you want to modify: ").strip()
     existing_oil = None
     for index, oil in enumerate(all_oils, start=2):
         if oil["Oil Name"].lower() == oil_name.lower():
@@ -551,13 +551,13 @@ def modify_oil():
                f"\nScore: {existing_oil['Score']}\n"))
         ailment = input(colorama.Style.RESET_ALL +
                         colorama.Fore.WHITE +
-                        "Enter the updated ailments "
-                        "the oil addresses: ").strip()
+                        "\nEnter the updated ailments "
+                        "the oil addresses: \n").strip()
         while True:
             try:
                 price = float(input(colorama.Style.RESET_ALL +
                                     colorama.Fore.WHITE +
-                                    "Enter the updated Euro price value: "))
+                                    "\nEnter the updated Euro price value: \n"))
                 break
             except ValueError:
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
@@ -566,8 +566,8 @@ def modify_oil():
         while True:
             application = input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
-                                "Can it be used with a diffuser? "
-                                "(Yes/No): ").strip().lower()
+                                "\nCan it be used with a diffuser? "
+                                "(Yes/No): \n").strip().lower()
             if application == "yes" or application == "no":
                 break
             else:
@@ -617,7 +617,7 @@ def modify_oil():
                                   colorama.Fore.WHITE +
                                   "\nIf you want to return to main menu, "
                                   "type in Yes. Otherwise, "
-                                  "type No to exit program: ").strip()
+                                  "type No to exit program: \n").strip()
                 if main_menu.lower() == "yes":
                     main()
                 elif main_menu.lower() == "no":
@@ -714,7 +714,7 @@ def search_patient():
         """
         search_criteria = input(colorama.Style.RESET_ALL +
                                 colorama.Fore.WHITE +
-                                "Input the name of the patient "
+                                "\nInput the name of the patient "
                                 "on a First Name "
                                 "Second Name format. For example John Doe. "
                                 "Please check to make sure "
@@ -725,7 +725,7 @@ def search_patient():
                   "Please make sure your field is not empty.\n")
             search_criteria = input(colorama.Style.RESET_ALL +
                                     colorama.Fore.WHITE +
-                                    "Enter the name again and hit enter: ")
+                                    "\nEnter the name again and hit enter: ")
 
         matching_patient = []
         for patient in all_patients:
@@ -751,14 +751,14 @@ def search_patient():
                   "Please check that the name is spelled "
                   "correctly and search again.\n")
         new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                           "Do you want to run a new search? Type Yes/No: \n")
+                           "\nDo you want to run a new search? Type Yes/No: \n")
         while new_search.lower() not in ["yes", "no"]:
             print(colorama.Fore.RED + colorama.Style.BRIGHT +
                   "\nYou have not selected a valid option. "
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
             new_search = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                               "Do you want to run a new search? "
+                               "\nDo you want to run a new search? "
                                "Type Yes/No: \n")
         if new_search.lower() != "yes":
 
