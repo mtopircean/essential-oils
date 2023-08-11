@@ -92,12 +92,12 @@ To clone the repository:
 
 ## Design
 Design is very basic and limited to Python/Heroku interfaces.
-There was a separation of data based on their pourpose and intention by using colorama.
+There was a separation of data based on their purpose and intention by using colorama.
 The use of tabulate and font styles was done in order to structure the data in a manner easy to read and understand.
 
 #### FlowChart
 FlowChart was established at the beginning of the project as it was an absolute requirement in order to ensure that all of the different features and interconnections between different functionalities where executed.
-It has supported in a few instances in identifying a lack of logic, or a deadend in a function.
+It has supported in a few instances in identifying a lack of logic, or a dead end in a function.
 ![Alt text](/readme/images/flow-diagram.jpg)
 
 [FLOWCHART PRESENT ALSO AT THIS LINK DUE TO IT`S LARGE SIZE AND COMPLEXITY:](https://github.com/mtopircean/essential-oils/blob/main/readme/images/flow%20-diagram.jpg)
@@ -120,7 +120,7 @@ The use of different colours and font highlight was done to create structure and
 
 A. External Features Implemented:
 
--  Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easiley read and understand data.
+-  Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easily read and understand data.
 ![Alt text](/readme/images/tabulate.jpg)
 
 -  Colorama was used in highlighting key messages on the screen:
@@ -272,7 +272,7 @@ Link to full local functionality test: [TESTING.MD](https://github.com/mtopircea
 
 * FIXED BUGS:
 Several issues where identified during development, but most common:
-- while loops creating a continous loop through a portion of the code
+- while loops creating a continuous loop through a portion of the code
 - validation criteria was not initially considering empty strings
 - lower / upper case sensitivity was not consistently applied where needed
 - indentation errors where numerous but fixed
