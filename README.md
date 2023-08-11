@@ -160,7 +160,7 @@ Main menu is providing access to 6 main function:
     5. List patients database
     6. Search patient in the database
 
-1. Add a product to the database(add_oil()):
+1. Add a product to the database(``add_oil()``):
 * Main functionality of this feature is to allow the user to add a product to the database by inputting specific parameters.
 It also calculates a specific score which is returned in the same database in order to offer a comparison between the different products.
 * If an oil already exists when trying to enter the product, the user will be prompted that the product is already present in the database, and it will recommend to use the Modify oil data function if the choice will be to modify it`s parameters.
@@ -174,7 +174,7 @@ It also calculates a specific score which is returned in the same database in or
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/add-oil-function.gif)
 
-2. List oils database(list_oils()):
+2. List oils database(``list_oils()``):
 * Functionality relates to the option of a user to list all of the oils present in the database.
 * By using tabulate, user is able to view the information in a manner easier to read and understand.
 * Similar to the rest of the functions, in order to allow an open loop when running the function, user can then return to main menu.
@@ -182,7 +182,7 @@ EXAMPLE OF FUNCTION RUNNING:
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/list-oils.gif)
 
-3. Search a product in the database(find_store_oils()):
+3. Search a product in the database(``find_store_oils()``):
 * By using this function the user is able to search for a product in the database either by it`s product name or ailment. In order to improve user experience and allow the user to make less mistake, function will return a result even if the user will enter the name of the oil or ailment partially. For example, using "Laven" instead of "Lavender", will return a result for all the products including "Laven" in either the name or ailment.
 * Search result is returned in a tabulate format.
 * An extra functionality of the feature, which brings true value to the application vs. using a standard excel/worksheet solution, is the ability to save the search under a patient name. The search is then saved under the patients name in a specific sheet so it can be returned in the other functions which will search and list the patients. This allows the user to take real time snapshots of their discussion with a patient and be able to access the data later and reference in a new contact with the client. 
@@ -195,7 +195,7 @@ Patient list is separate by the actual name of the patient. This is done so it a
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/search-oil.gif)
 
-4. Modify oil data(modify_oil()):
+4. Modify oil data(``modify_oil()``):
 * Function added later in the development with the goal to allow the user to update the existing data on an already present entry in the product database.
 * It is applicable only to oils and does not allow updates on the patients database.
 * User is allowed to search in the database, if an entry is found data is returned to the user so we have reference it when the parameters will be entered with the new data. Limitation here relates to the fact that the user has to re-enter each parameter. Upgrade in the future will be to enter a numeric option related to a list including all of the parameters.
@@ -207,7 +207,7 @@ EXAMPLE OF FUNCTION RUNNING:
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/modify-oil.gif)
 
-5. List patients database(list_patients()):
+5. List patients database(``list_patients()``):
 * Similar to the list_oils function, the list_patients function will return a list of all the patients existing in the patients_list sheet.
 * Data is returned in a table format by using tabulate
 * Open loop is existent also here in order to allow the user to return to main menu or terminate program
@@ -216,7 +216,7 @@ EXAMPLE OF FUNCTION RUNNING:
 EXAMPLE OF FUNCTION RUNNING:
 ![Alt text](/readme/videos/list-patients.gif)
 
-6. Search patient in the database(search_patient())
+6. Search patient in the database(``search_patient()``)
 * Similar to the function allowing to search for a product, this function allows the user to search a patient in the database
 * Result is returned in table format using tabulate
 * User can input partially the name of the patient and still be able to return the results containing it. This was chosen vs. a fixed and strict use of the exact name in order to allow more flexibility to the user and less room for error.
@@ -280,15 +280,35 @@ Several issues where identified during development, but most common:
 - challenges in running the main function within other functions, challenges which have lead to the current solution
 - high difficulty in implementing the modify oil function around updates to specific fields in google sheet
 
+SPECIFIC ERROR:
+If a link to the google sheet is broken, program would break. I`ve tested this by changing the name of one of the sheets linked in the program and the error bellow was returned.
+![Alt text](/readme/videos/google-sheet-broken-connection.gif)
+
+Solution implemented in this case was a try / error update to the code communicating with the database, like the example bellow:
+
+```python
+try:
+            worksheet_id = "patients_list"
+            worksheet = SHEET.worksheet(worksheet_id)
+            all_patients = worksheet.get_all_records()
+        except Exception as e:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "\nAn error occurred while connecting to the database. "
+                  "Please contact the administrator related "
+                  "to following function: \n", str(e))
+            main()
+            return
+```
+EXAMPLE OF ERROR RETURNED:
+
+![Alt text](/readme/videos/connection-error.gif)
+
 * KNOWN ERRORS:
 
 a. Although is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
 It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunately, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
 
-b. If a link to the google sheet is broken, program will break. I`ve tested this by changed the name of one of the sheets linked in the program and the error bellow was returned. Due to time constraints, I was unable to further progress in creating a fix, however, the user is not left access in the program in order to change the master data, and although not done, the file will be locked to the user so main data will not be able to be altered.
-![Alt text](/readme/videos/google-sheet-broken-connection.gif)
-
-c. Due to size of screen in Heroku, when listing the patients database the score option moves to another row.
+b. Due to size of screen in Heroku, when listing the patients database the score option moves to another row.
 ![Alt text](/readme/images/patient-list.jpg)
 
 ## Credits
