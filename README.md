@@ -291,15 +291,15 @@ try:
             worksheet_id = "patients_list"
             worksheet = SHEET.worksheet(worksheet_id)
             all_patients = worksheet.get_all_records()
-        except Exception as e:
-            print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                  "\nAn error occurred while connecting to the database. "
-                  "Please contact the administrator related "
-                  "to following function: \n", str(e))
-            main()
-            return
+except Exception as e:
+    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+            "\nAn error occurred while connecting to the database. "
+            "Please contact the administrator related "
+            "to following function: \n", str(e))
+    main()
+    return
 ```
-EXAMPLE OF ERROR RETURNED:
+EXAMPLE OF SOLUTION IMPLEMENTED:
 
 ![Alt text](/readme/videos/connection-error.gif)
 
