@@ -392,9 +392,9 @@ def find_store_oils():
 
         matching_oils = []
         for oil in all_oils:
-            if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():
+            if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():  # noqa
                 matching_oils.append(oil)
-            elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
+            elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():  # noqa
                 matching_oils.append(oil)
 
         if matching_oils:
@@ -734,7 +734,7 @@ def search_patient():
 
         matching_patient = []
         for patient in all_patients:
-            if 'Patient Name' in patient and search_criteria.lower().strip() in patient['Patient Name'].lower().strip():
+            if 'Patient Name' in patient and search_criteria.lower().strip() in patient['Patient Name'].lower().strip():  # noqa
                 matching_patient.append(patient)
 
         if matching_patient:
