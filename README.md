@@ -306,10 +306,12 @@ EXAMPLE OF ERROR RETURNED:
 * KNOWN ERRORS:
 
 a. Although is not considered as an error, there is a best practice not implemented in the form of imperative commits to GitHub.
-It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunately, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits.
+It was highlighted for my previous project, for project 2 that this should be implemented. Unfortunately, Project 2 feedback came very late, close to me finishing this project, so I was able to implemented it on a very limited number of commits, and probably still building the habit of doing this.
 
 b. Due to size of screen in Heroku, when listing the patients database the score option moves to another row.
 ![Alt text](/readme/images/patient-list.jpg)
+
+c. Again, not a specific error in code, but in several instances I`ve made general comments in my commit on "Updating Test file format". This was related to changes made to the structure in order for me to visualize it in the github reader format. Something I will correct in the future projects by using external tools to help me visualize the changes.
 
 ## Credits
 #### Code Used:
