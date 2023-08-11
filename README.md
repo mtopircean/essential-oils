@@ -234,7 +234,7 @@ All found spelling errors where corrected in order to give the user a clean expe
 #### CI Linter
 
 Code was tested by using the CI Linter web application.
-No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code, I`ve decided to document them only at this moment.
+No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code/
 
 Linter test:
 
@@ -251,6 +251,12 @@ elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
 ```python
 if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():
 ```
+
+I`ve decided to comment them out by using ``  # noqa``. This has been used with considerable caution and limitation since it is used in 3 instances only in over 880 lines of code.
+
+Updated CI Linter test result:
+
+![Alt text](/readme/images/linter-updated.jpg)
 
 
 #### Python
