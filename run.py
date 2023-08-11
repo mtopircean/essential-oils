@@ -122,10 +122,17 @@ def add_oil():
                   "\nYou have not entered a valid name. "
                   "Please provide a name for the oil. "
                   "Please make sure you are not leaving the field empty.\n")
-
-    worksheet_id = "master"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_oils = worksheet.get_all_records()
+    try:
+        worksheet_id = "master"
+        worksheet = SHEET.worksheet(worksheet_id)
+        all_oils = worksheet.get_all_records()
+    except Exception as e:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "\nAn error occurred while connecting to the database. "
+              "Please contact the administrator related "
+              "to following function: \n", str(e))
+        main()
+        return
 
     """
     Section dedicated to checks if oil already exists in database
@@ -309,9 +316,17 @@ def list_oils():
     Note: Tabulate how to install and use
     is inspired from: https://pypi.org/project/tabulate/.
     """
-    worksheet_id = "master"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_oils = worksheet.get_all_records()
+    try:
+        worksheet_id = "master"
+        worksheet = SHEET.worksheet(worksheet_id)
+        all_oils = worksheet.get_all_records()
+    except Exception as e:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "\nAn error occurred while connecting to the database. "
+              "Please contact the administrator related "
+              "to following function: \n", str(e))
+        main()
+        return
 
     oils_table = []
     for oil in all_oils:
@@ -370,10 +385,17 @@ def find_store_oils():
     if patient already exists or creates a new one
     - once user stops it`s search activity can always return to main menu
     """
-
-    worksheet_id = "master"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_oils = worksheet.get_all_records()
+    try:
+        worksheet_id = "master"
+        worksheet = SHEET.worksheet(worksheet_id)
+        all_oils = worksheet.get_all_records()
+    except Exception as e:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "\nAn error occurred while connecting to the database. "
+              "Please contact the administrator related "
+              "to following function: \n", str(e))
+        main()
+        return
 
     """
     Search related code section with tabulate styling for returned result.
@@ -531,9 +553,17 @@ def modify_oil():
     If no oil is identified, user can run a new search or return
     to main menu.
     """
-    worksheet_id = "master"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_oils = worksheet.get_all_records()
+    try:
+        worksheet_id = "master"
+        worksheet = SHEET.worksheet(worksheet_id)
+        all_oils = worksheet.get_all_records()
+    except Exception as e:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "\nAn error occurred while connecting to the database. "
+              "Please contact the administrator related "
+              "to following function: \n", str(e))
+        main()
+        return
     oil_name = input(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                      "\nEnter the name of the oil "
                      "you want to modify: ").strip()
@@ -649,9 +679,17 @@ def list_patients():
     Offers again the option to exit to main menu.
     As all functions validates data input to limit error.
     """
-    worksheet_id = "patients_list"
-    worksheet = SHEET.worksheet(worksheet_id)
-    all_patients = worksheet.get_all_records()
+    try:
+        worksheet_id = "patients_list"
+        worksheet = SHEET.worksheet(worksheet_id)
+        all_patients = worksheet.get_all_records()
+    except Exception as e:
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+              "\nAn error occurred while connecting to the database. "
+              "Please contact the administrator related "
+              "to following function: \n", str(e))
+        main()
+        return
 
     """
     Creates a list and stores the results in patients_table
@@ -708,9 +746,17 @@ def search_patient():
     Provides as normal, the option to return to the main menu.
     """
     while True:
-        worksheet_id = "patients_list"
-        worksheet = SHEET.worksheet(worksheet_id)
-        all_patients = worksheet.get_all_records()
+        try:
+            worksheet_id = "patients_list"
+            worksheet = SHEET.worksheet(worksheet_id)
+            all_patients = worksheet.get_all_records()
+        except Exception as e:
+            print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                  "\nAn error occurred while connecting to the database. "
+                  "Please contact the administrator related "
+                  "to following function: \n", str(e))
+            main()
+            return
 
         """
         Main input section to allow the user to perform a search
