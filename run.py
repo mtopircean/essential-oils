@@ -232,7 +232,7 @@ def add_oil():
                   "Your answer should be either 'Yes' or 'No'. "
                   "Please resubmit your answer.\n")
     score = round(price / 10 * 0.30 +
-                  float(10 if application == "yes" else 0), 2)
+                  float(10 if application.lower() == "yes" else 0), 2)
     """
     Adds the oil to database and updates the master sheet.
     It uses an outside function called update_oils_worksheet.
@@ -609,7 +609,7 @@ def modify_oil():
                 print(colorama.Fore.RED + colorama.Style.BRIGHT +
                       "Invalid input. Please enter either 'Yes' or 'No'.")
         score = round(price / 10 * 0.30 +
-                      float(10 if application == "yes" else 0), 2)
+                      float(10 if application.lower() == "yes" else 0), 2)
         """
         Updates master document with the new oil parameters
         """
