@@ -357,6 +357,9 @@ Generally, during development there was a lot of research done on different synt
 
 #### Other Credits
 
+Deployment instructions in GitHub copied from kera-cudmore different repo`s and following the article written by her on how to write a readme.
+Inspiration on readme structure taken from kera-cudmore repo`s and following the article written by her on how to write a readme.
+
 Thanks to Graeme Taylor, my mentor for all his support during the development of the project.
 Thank you to the CI Tutor Team who supported in several instances by providing guidance on overcoming various challenges encountered during development:
 
