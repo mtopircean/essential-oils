@@ -239,7 +239,7 @@ All found spelling errors where corrected in order to give the user a clean expe
 #### CI Linter
 
 Code was tested by using the CI Linter web application.
-No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code/.
+No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code.
 
 Linter test:
 
