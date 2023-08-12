@@ -461,6 +461,13 @@ def find_store_oils():
                 sheet_name = input(colorama.Style.RESET_ALL +
                                    colorama.Fore.WHITE +
                                    "List patient`s name: \n").lower()
+                if sheet_name == "":
+                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                          "\nYou have not entered a valid name. "
+                          "Please provide a patient name. "
+                          "Please make sure you are not "
+                          "leaving the field empty.\n")
+                    continue
                 patients_sheet = SHEET.worksheet("patients_list")
                 patients_data = patients_sheet.get_all_records()
                 patients_names = [patient['Patient Name'].lower()
@@ -643,7 +650,7 @@ def modify_oil():
                f"{existing_oil['Diffuser suitable']}"
                f"\nScore: {existing_oil['Score']}\n"))
     else:
-        print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+        print(colorama.Fore.RED + colorama.Style.BRIGHT +
               "The oil was not found in the database. "
               "Ensure that you have typed the full correct name.\n")
 
