@@ -56,8 +56,8 @@ It should also offer the user the ability to have more flexibility in what they 
 For patients listing, it will include more details on when the search has taken place and allow to store users personal data as the discussions/searches happen, data like date of birth, gender, contact details.
 
 ## Deployment and Local Development
-Deployment of the website was done using HEROKU, and can be accessed here [ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/)
-To access the google sheet linked to this project, please use this link [EssentialOilsGoogle](https://tinyurl.com/yc7m7257)
+Deployment of the website was done using HEROKU, and can be accessed here [ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/).
+To access the google sheet linked to this project, please use this link [EssentialOilsGoogle](https://tinyurl.com/yc7m7257).
 The steps in deployment where taken following the example of LoveSandwiches CI Project.
 
 #### How to Fork
