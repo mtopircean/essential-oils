@@ -58,7 +58,7 @@ For patients listing, it will include more details on when the search has taken 
 ## Deployment and Local Development
 Deployment of the website was done using HEROKU, and can be accessed here [ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/).
 To access the google sheet linked to this project, please use this link [EssentialOilsGoogle](https://tinyurl.com/yc7m7257).
-The steps in deployment where taken following the example of LoveSandwiches CI Project.
+The steps in deployment in Heroku where taken following the example of LoveSandwiches CI Project.
 
 #### How to Fork
 To fork the repository:
@@ -90,6 +90,7 @@ To clone the repository:
 #### Other:
 1. HEROKU: to deploy application and act as the app interface
 2. CI Python Linter: to validate code format.
+3. draw.io: to create flow diagram.
 
 ## Design
 Design is very basic and limited to Python/Heroku interfaces.
@@ -122,15 +123,18 @@ The use of different colours and font highlight was done to create structure and
 A. External Features Implemented:
 
 -  Tabulate add-on implemented in order to provide a more graphical representation of the database and allow user to easily read and understand data.
+
 ![Alt text](/readme/images/tabulate.jpg)
 
 -  Colorama was used in highlighting key messages on the screen:
     *** Errors by using red
     *** Cyan for highlighting the menu
     *** White for standard information
+
 ![Alt text](/readme/images/color-scheme.jpg)
 
 - Connection to google sheet created in order to pull and push data to the main database by accessing 2 sheets, "master" and "patients_list"
+
 ![Alt text](/readme/images/google-sheet.jpg)
 
 
@@ -235,7 +239,7 @@ All found spelling errors where corrected in order to give the user a clean expe
 #### CI Linter
 
 Code was tested by using the CI Linter web application.
-No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code/
+No issues where identified except the ones bellow which where not addressed as they would have required for the code to be re-written. Due to the advanced state of the project and due to the fact that changing the code could have impacted the integrity and stability of the code/.
 
 Linter test:
 
