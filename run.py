@@ -604,10 +604,19 @@ def modify_oil():
                f"\nCan it be used with a diffuser: "
                f"{existing_oil['Diffuser suitable']}"
                f"\nScore: {existing_oil['Score']}\n"))
-        ailment = input(colorama.Style.RESET_ALL +
-                        colorama.Fore.WHITE +
-                        "\nEnter the updated ailments "
-                        "the oil addresses: \n").strip()
+        while True:
+            ailment = input(colorama.Style.RESET_ALL +
+                            colorama.Fore.WHITE +
+                            "\nEnter the updated ailments "
+                            "the oil addresses: \n").lower().strip()
+            if ailment == "":
+                        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                              "\nYou have not entered a valid ailment. "
+                              "Please make sure you are not "
+                              "leaving the field empty.\n")
+            else:
+                break
+
         while True:
             try:
                 price = float(input(colorama.Style.RESET_ALL +
