@@ -472,29 +472,40 @@ def find_store_oils():
                         "Patient already has a record. "
                         "Your new search will be appended "
                         "to the existing one.\n")
-                    patient_index = patients_names.index(sheet_name.lower())
-                    next_search = len(patients_data[patient_index]) + 1
-                    patients_sheet.insert_row([], next_search)
+                    last_row_for_patient = None
+                    for patient_row, patient_data in enumerate(patients_data):
+                        if patient_data['Patient Name'].lower() == sheet_name.lower():  # noqa
+                            last_row_for_patient = patient_row + 2
+                    if last_row_for_patient is not None:
+                        insert_at_row = last_row_for_patient + 1
+                        while insert_at_row - 2 < len(patients_data) and patients_data[insert_at_row - 2]['Patient Name'] == sheet_name:  # noqa
+                            insert_at_row += 1
+                    for oil in matching_oils:
+                        oil_data = [sheet_name, oil['Oil Name'],
+                                    oil['Ailment'], oil['Eur Price'],
+                                    oil['Diffuser suitable'], oil['Score']]
+                        patients_sheet.insert_row(oil_data, insert_at_row)
+                        insert_at_row += 1
 
                 else:
                     print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                           "Adding a new patient to your list.\n")
                     patients_sheet.append_row([sheet_name])
 
-                """
-                Appends the sheet patient_list
-                in the google sheet EssentialOils.
-                """
+                    """
+                    Appends the sheet patient_list
+                    in the google sheet EssentialOils.
+                    """
 
-                for oil in matching_oils:
-                    oil_data = [sheet_name, oil['Oil Name'],
-                                oil['Ailment'],
-                                oil['Eur Price'],
-                                oil['Diffuser suitable'],
-                                oil['Score']]
-                    patients_sheet.append_row(oil_data)
-                print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "\nYour search was added to your search history.\n")
+                    for oil in matching_oils:
+                        oil_data = [sheet_name, oil['Oil Name'],
+                                    oil['Ailment'],
+                                    oil['Eur Price'],
+                                    oil['Diffuser suitable'],
+                                    oil['Score']]
+                        patients_sheet.append_row(oil_data)
+                    print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
+                          "\nYour search was added to your search history.\n")
 
         else:
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +

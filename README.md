@@ -257,7 +257,15 @@ elif 'Ailment' in oil and search_criteria.lower() in oil['Ailment'].lower():
 if 'Oil Name' in oil and search_criteria.lower().strip() in oil['Oil Name'].lower().strip():
 ```
 
-I`ve decided to comment them out by using ``  # noqa``. This has been used with considerable caution and limitation since it is used in 3 instances only in over 880 lines of code.
+```python
+if patient_data['Patient Name'].lower() == sheet_name.lower():
+```
+
+```python
+while insert_at_row - 2 < len(patients_data) and patients_data[insert_at_row - 2]['Patient Name'] == sheet_name:
+```
+
+I`ve decided to comment them out by using ``  # noqa``. This has been used with considerable caution and limitation since it is used in 5 instances only in over 890 lines of code.
 
 Updated CI Linter test result:
 
