@@ -57,7 +57,7 @@ For patients listing, it will include more details on when the search has taken 
 
 ## Deployment and Local Development
 Deployment of the website was done using HEROKU, and can be accessed here [ESSENTIALOILS](https://essential-oils-8a5b724d8c2a.herokuapp.com/)
-To access the google sheet linked to this project, please use this linl[EssentialOilsGoogle](https://tinyurl.com/yc7m7257)
+To access the google sheet linked to this project, please use this link [EssentialOilsGoogle](https://tinyurl.com/yc7m7257)
 The steps in deployment where taken following the example of LoveSandwiches CI Project.
 
 #### How to Fork
