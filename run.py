@@ -460,19 +460,19 @@ def find_store_oils():
             if add_patient.lower() == "yes":
                 sheet_name = input(colorama.Style.RESET_ALL +
                                    colorama.Fore.WHITE +
-                                   "List patient`s name: \n")
+                                   "List patient`s name: \n").lower()
                 patients_sheet = SHEET.worksheet("patients_list")
                 patients_data = patients_sheet.get_all_records()
-                patients_names = [patient['Patient Name']
+                patients_names = [patient['Patient Name'].lower()
                                   for patient in patients_data]
 
-                if sheet_name in patients_names:
+                if sheet_name.lower() in patients_names:
                     print(
                         colorama.Style.RESET_ALL + colorama.Fore.WHITE +
                         "Patient already has a record. "
                         "Your new search will be appended "
                         "to the existing one.\n")
-                    patient_index = patients_names.index(sheet_name)
+                    patient_index = patients_names.index(sheet_name.lower())
                     next_search = len(patients_data[patient_index]) + 1
                     patients_sheet.insert_row([], next_search)
 
