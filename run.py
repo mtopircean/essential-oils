@@ -458,16 +458,19 @@ def find_store_oils():
                           "Please resubmit your answer.\n")
 
             if add_patient.lower() == "yes":
-                sheet_name = input(colorama.Style.RESET_ALL +
-                                   colorama.Fore.WHITE +
-                                   "List patient`s name: \n").lower()
-                if sheet_name == "":
-                    print(colorama.Fore.RED + colorama.Style.BRIGHT +
-                          "\nYou have not entered a valid name. "
-                          "Please provide a patient name. "
-                          "Please make sure you are not "
-                          "leaving the field empty.\n")
-                    continue
+                while True:
+                    sheet_name = input(colorama.Style.RESET_ALL +
+                                    colorama.Fore.WHITE +
+                                    "List patient`s name: \n").lower().strip()
+                    if sheet_name == "":
+                        print(colorama.Fore.RED + colorama.Style.BRIGHT +
+                            "\nYou have not entered a valid name. "
+                            "Please provide a patient name. "
+                            "Please make sure you are not "
+                            "leaving the field empty.\n")
+                        continue
+                else:
+                    break
                 patients_sheet = SHEET.worksheet("patients_list")
                 patients_data = patients_sheet.get_all_records()
                 patients_names = [patient['Patient Name'].lower()
