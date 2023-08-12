@@ -494,7 +494,7 @@ def find_store_oils():
                                 oil['Score']]
                     patients_sheet.append_row(oil_data)
                 print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
-                      "/nYour search was added to your search history.\n")
+                      "\nYour search was added to your search history.\n")
 
         else:
             print(colorama.Style.RESET_ALL + colorama.Fore.WHITE +
